@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="id" data-tema="merah" data-mode="terang">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pembukuan - PT Berkah Riyad Abadi</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#B71C1C">
+<link rel="icon" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+</head>
+<body>
+<script>
+/* Pemasang gaya tampilan. Sengaja lewat JavaScript supaya tidak terpengaruh penyaringan HTML/CSS oleh Blogger. */
+(function () {
+  /* Terapkan tema & mode secepat mungkin dari cache perangkat, sebelum CSS dan sebelum apa pun lain,
+     supaya tidak ada kedipan warna saat halaman baru dibuka. */
+  try {
+    var c = JSON.parse(localStorage.getItem('pbk_pub') || 'null');
+    if (c && c.tema) document.documentElement.dataset.tema = c.tema;
+    if (c && c.mode) document.documentElement.dataset.mode = c.mode;
+  } catch (e) {}
+  try {
+    if (/[?&]m=1(&|$)/.test(location.search) && !sessionStorage.getItem('pbk_m0')) {
+      sessionStorage.setItem('pbk_m0', '1');
+      location.replace(location.href.replace(/([?&])m=1(?=&|#|$)/, '$1m=0'));
+      return;
+    }
+  } catch (e) {}
+  var css = String.raw`:root{
+  --p:#B71C1C; --p2:#D4A017;
+  --bg:#FBF1EC; --card:#FFFFFF; --text:#1A1F36; --muted:#667085; --line:#E7E9F2;
+  --shadow:0 1px 2px rgba(16,24,40,.04),0 10px 28px -14px rgba(16,24,40,.14);
+  --ok:#16A34A; --warn:#D97706; --bad:#DC2626; --info:#2563EB;
+  --tint:color-mix(in srgb,var(--p) 9%,var(--card)); --tint2:color-mix(in srgb,var(--p) 17%,var(--card));
+  --r:18px; --font:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+}
+/* Warna aksen (--p/--p2) TETAP seperti sebelumnya, tidak diubah. Hanya latar (--bg/--card) yang kini ikut tema. */
+html[data-tema=biru]{--p:#2563EB;--p2:#38BDF8;--bg:#EEF4FC;--card:#FFFFFF}
+html[data-tema=hijau]{--p:#059669;--p2:#34D399;--bg:#EEF9F3;--card:#FFFFFF}
+html[data-tema=ungu]{--p:#5B21B6;--p2:#D4AF37;--bg:#F6F1FB;--card:#FFFFFF}
+html[data-tema=burgundy]{--p:#6D0F2B;--p2:#C9A227;--bg:#FBF0F1;--card:#FFFFFF}
+html[data-mode=gelap]{--text:#E8EBF5;--muted:#9AA3BF;--line:#252A44;--shadow:0 1px 2px rgba(0,0,0,.4),0 12px 30px -16px rgba(0,0,0,.7);--ok:#34D399;--warn:#FBBF24;--bad:#F87171;--info:#60A5FA}
+/* Latar gelap juga mengikuti tema (dipisah dari blok mode di atas supaya selalu menang). */
+html[data-tema=merah][data-mode=gelap]{--bg:#1C120D;--card:#241712}
+html[data-tema=burgundy][data-mode=gelap]{--bg:#190B10;--card:#22101A}
+html[data-tema=ungu][data-mode=gelap]{--bg:#130B1F;--card:#1C1229}
+html[data-tema=biru][data-mode=gelap]{--bg:#081524;--card:#0E2238}
+html[data-tema=hijau][data-mode=gelap]{--bg:#06180F;--card:#0B2419}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;overflow:hidden!important}
+.blogger-element,#navbar-iframe,.widget,.post-footer,.comments,.header-widget{display:none!important}
+body{font-family:var(--font);-webkit-font-smoothing:antialiased}
+#app-root{text-align:left;direction:ltr;letter-spacing:normal;text-transform:none;font-style:normal;position:fixed;inset:0;z-index:2147483647;overflow:auto;-webkit-overflow-scrolling:touch;font-family:var(--font);font-size:16px;line-height:1.5;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased;transition:background .3s,color .3s}
+#app-root::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background:
+  radial-gradient(520px 380px at 8% -4%,color-mix(in srgb,var(--p) 14%,transparent),transparent 70%),
+  radial-gradient(560px 420px at 100% 100%,color-mix(in srgb,var(--p2) 16%,transparent),transparent 70%)}
+#app-root h1,#app-root h2,#app-root h3,#app-root h4,#app-root h5,#app-root h6,#app-root p,#app-root span,#app-root div,#app-root label,#app-root small,#app-root b,#app-root strong,#app-root a{color:inherit!important;font-family:inherit!important;text-transform:none!important;text-align:left;text-decoration:none}
+h1,h2,h3,h4{margin:0;font-weight:700;letter-spacing:-.01em}
+button,input,select,textarea{font:inherit;color:inherit}
+.hidden{display:none!important}
+.ic{width:20px;height:20px;flex:none;vertical-align:middle;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.num{font-variant-numeric:tabular-nums;text-align:right}
+:focus-visible{outline:3px solid color-mix(in srgb,var(--p) 55%,transparent);outline-offset:2px}
+
+/* progress bar atas */
+#topbar-progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--p),var(--p2));z-index:3000;transition:width .4s ease,opacity .3s;opacity:0}
+#topbar-progress.on{opacity:1}
+
+/* login */
+#login{position:relative;z-index:1;min-height:100vh;display:grid;place-items:center;padding:20px}
+.login-card{width:100%;max-width:420px;background:var(--card);border-radius:28px;box-shadow:var(--shadow);padding:36px 32px;border:1px solid var(--line)}
+.login-brand{display:flex;flex-direction:column;align-items:center;gap:12px;margin-bottom:26px;text-align:center}
+.logo{width:72px;height:72px;border-radius:20px;background:linear-gradient(135deg,var(--p),var(--p2));display:grid;place-items:center;color:#fff;font-weight:800;font-size:26px;overflow:hidden;box-shadow:0 10px 24px -10px var(--p)}
+.logo img{width:100%;height:100%;object-fit:contain;background:#fff;padding:6px}
+.logo.sm{width:44px;height:44px;border-radius:13px;font-size:17px}
+.logo.sm img{padding:3px}
+.login-brand h1{font-size:22px}
+.login-brand p{margin:0;color:var(--muted);font-size:14px}
+
+/* form */
+label.f{display:block;font-size:13px;font-weight:600;color:var(--muted);margin-bottom:6px}
+input,select,textarea{width:100%;background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:11px 14px;font-size:15px;transition:border-color .2s,box-shadow .2s}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--p);box-shadow:0 0 0 4px color-mix(in srgb,var(--p) 16%,transparent)}
+input[type=checkbox],input[type=radio]{width:20px;height:20px;padding:0;accent-color:var(--p)}
+input[readonly]{background:var(--tint)}
+textarea{min-height:76px;resize:vertical}
+.field{margin-bottom:16px}
+.hint{font-size:13px;color:var(--muted);margin:6px 0 0}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.row3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.err-text{color:var(--bad);font-size:13px;margin-top:6px}
+
+/* tombol */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:10px 18px;border-radius:12px;border:1.5px solid var(--line);background:var(--card);font-weight:600;font-size:15px;cursor:pointer;transition:transform .12s,background .2s,box-shadow .2s,border-color .2s}
+.btn:hover{border-color:var(--p);background:var(--tint)}
+a.btn{text-decoration:none;color:inherit}
+.btn:active{transform:scale(.97)}
+.btn.primary{background:linear-gradient(135deg,var(--p),color-mix(in srgb,var(--p) 55%,var(--p2)));color:#fff;border-color:transparent;box-shadow:0 10px 20px -10px var(--p)}
+.btn.primary:hover{filter:brightness(1.08);background:linear-gradient(135deg,var(--p),color-mix(in srgb,var(--p) 55%,var(--p2)))}
+.btn.danger{color:var(--bad);border-color:color-mix(in srgb,var(--bad) 40%,var(--line))}
+.btn.ghost{border-color:transparent;background:transparent}
+.btn.sm{min-height:36px;padding:6px 12px;font-size:14px;border-radius:10px}
+.btn.block{width:100%}
+.btn[disabled]{opacity:.55;cursor:not-allowed;transform:none}
+.icon-btn{width:44px;height:44px;border-radius:13px;border:1.5px solid var(--line);background:var(--card);display:grid;place-items:center;cursor:pointer;transition:background .2s,border-color .2s}
+.icon-btn:hover{background:var(--tint);border-color:var(--p)}
+
+/* shell */
+#shell{position:relative;z-index:1;display:flex;min-height:100vh}
+.pbk-sidebar{width:272px;flex:none;background:var(--card);border-right:1px solid var(--line);padding:22px 16px;display:flex;flex-direction:column;gap:6px;position:sticky;top:0;height:100vh;overflow-y:auto;z-index:50;transition:transform .28s ease}
+.brand{display:flex;align-items:center;gap:12px;padding:4px 8px 18px}
+.brand b{display:block;font-size:15px;line-height:1.25}
+.brand small{color:var(--muted);font-size:12px}
+.nav-group{font-size:12px;font-weight:700;color:var(--muted);padding:14px 12px 4px;letter-spacing:.02em}
+.nav-item{display:flex;align-items:center;gap:12px;width:100%;padding:11px 14px;border-radius:13px;border:0;background:transparent;font-weight:600;font-size:15px;color:var(--muted);cursor:pointer;text-align:left;transition:background .18s,color .18s}
+.nav-item:hover{background:var(--tint);color:var(--text)}
+.nav-item.active{background:var(--tint2);color:var(--p)}
+.nav-item .badge{margin-left:auto;background:var(--bad);color:#fff;border-radius:99px;font-size:11px;padding:1px 7px;font-weight:700}
+.side-foot{margin-top:auto;padding-top:14px}
+.scrim{position:fixed;inset:0;background:rgba(10,12,24,.45);z-index:40;opacity:0;pointer-events:none;transition:opacity .25s}
+.pbk-content{flex:1;min-width:0;display:flex;flex-direction:column}
+.topbar{display:flex;align-items:center;gap:14px;padding:18px 32px;position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.topbar .greet{flex:1;min-width:0}
+.topbar h2{font-size:22px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar p{margin:0;color:var(--muted);font-size:14px}
+.chip-date{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:9px 14px;font-size:14px;font-weight:600;white-space:nowrap}
+.user-chip{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:6px 12px 6px 6px;cursor:pointer;position:relative}
+.avatar{width:36px;height:36px;border-radius:11px;background:linear-gradient(135deg,var(--p),var(--p2));color:#fff;display:grid;place-items:center;font-weight:700;font-size:14px}
+.user-chip b{font-size:14px;display:block;line-height:1.2}
+.user-chip small{font-size:12px;color:var(--muted)}
+.pbk-menu{position:absolute;right:0;top:calc(100% + 8px);background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);min-width:210px;padding:6px;z-index:60}
+.pbk-menu button{display:flex;gap:10px;align-items:center;width:100%;border:0;background:transparent;padding:11px 12px;border-radius:10px;cursor:pointer;font-weight:600;text-align:left}
+.pbk-menu button:hover{background:var(--tint)}
+.menu-btn{display:none}
+main#pbk-main{padding:8px 32px 48px;max-width:1280px;width:100%}
+.view{animation:viewIn .35s ease both}
+@keyframes viewIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* kartu */
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:22px}
+.card h3{font-size:17px;margin-bottom:4px}
+.card .sub{color:var(--muted);font-size:14px;margin:0 0 16px}
+.grid{display:grid;gap:20px;margin-bottom:20px}
+.grid>*{min-width:0}
+.kpis{grid-template-columns:repeat(4,minmax(0,1fr))}
+.g-main{grid-template-columns:minmax(0,2fr) minmax(0,1fr)}
+.g-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.kpi{display:flex;flex-direction:column;gap:14px;align-items:stretch;padding:20px;container-type:inline-size}
+.kpi-top{display:flex;gap:14px;align-items:center}
+.kpi-ic{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;color:#fff;flex:none}
+.kpi-ic .ic{width:24px;height:24px}
+.c-ok{background:linear-gradient(135deg,#16A34A,#4ADE80)}
+.c-info{background:linear-gradient(135deg,#2563EB,#60A5FA)}
+.c-bad{background:linear-gradient(135deg,#DC2626,#FB7185)}
+.c-warn{background:linear-gradient(135deg,#D97706,#FBBF24)}
+.c-p{background:linear-gradient(135deg,var(--p),var(--p2))}
+.kpi-l{font-size:13px;color:var(--muted);font-weight:600}
+.kpi-v{font-size:20px;font-size:clamp(15px,9.4cqw,26px);font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums;white-space:nowrap}
+.kpi-s{font-size:13px;color:var(--muted)}
+.legend{display:flex;gap:16px;font-size:13px;color:var(--muted);margin-bottom:8px;flex-wrap:wrap}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px}
+.chart svg{width:100%;height:auto;display:block;overflow:visible}
+.bar{transform-box:fill-box;transform-origin:bottom;animation:grow .7s cubic-bezier(.2,.8,.2,1) both}
+@keyframes grow{from{transform:scaleY(0)}}
+.donut-wrap{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.donut circle.seg{animation:draw .9s ease-out both;transform:rotate(-90deg);transform-origin:60px 60px}
+@keyframes draw{from{stroke-dasharray:0 400}}
+.donut-list{flex:1;min-width:140px;display:grid;gap:8px;font-size:14px}
+.donut-list div{display:flex;align-items:center;gap:8px}
+.donut-list i{width:10px;height:10px;border-radius:50%;flex:none}
+.donut-list span:last-child{margin-left:auto;font-weight:600;font-variant-numeric:tabular-nums}
+.prog{margin:14px 0}
+.prog .t{display:flex;justify-content:space-between;font-size:14px;margin-bottom:6px}
+.prog .t b{font-variant-numeric:tabular-nums;white-space:nowrap}
+.prog .t{gap:10px}
+.prog .bg{height:9px;border-radius:99px;background:var(--tint2);overflow:hidden}
+.prog .fg{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--p),var(--p2));transform-origin:left;animation:fill .9s cubic-bezier(.2,.8,.2,1) both}
+@keyframes fill{from{transform:scaleX(0)}}
+.list{display:grid;gap:4px;grid-template-columns:minmax(0,1fr)}
+.li{display:flex;align-items:center;gap:12px;padding:10px 8px;border-radius:12px}
+.li.click{cursor:pointer}
+.li.click:hover{background:var(--tint)}
+.li .dot{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;flex:none;background:var(--tint2);color:var(--p)}
+.li .m{flex:1;min-width:0}
+.li .m b{display:block;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.li .m small{color:var(--muted);font-size:13px}
+.li .r{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.empty{text-align:center;color:var(--muted);padding:26px 10px;font-size:14px}
+
+/* chip status */
+.chip{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:99px;font-size:12px;font-weight:700;white-space:nowrap}
+.chip.ok{background:color-mix(in srgb,var(--ok) 15%,var(--card));color:var(--ok)}
+.chip.warn{background:color-mix(in srgb,var(--warn) 16%,var(--card));color:var(--warn)}
+.chip.bad{background:color-mix(in srgb,var(--bad) 14%,var(--card));color:var(--bad)}
+.chip.info{background:color-mix(in srgb,var(--info) 14%,var(--card));color:var(--info)}
+.chip.mute{background:var(--tint2);color:var(--muted)}
+
+/* tabel */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th{background:var(--tint);color:var(--muted);font-weight:700;font-size:13px;text-align:left;padding:12px 14px;white-space:nowrap;position:sticky;top:0}
+td{padding:12px 14px;border-top:1px solid var(--line);vertical-align:middle}
+tr.click{cursor:pointer}
+tr.click:hover td{background:var(--tint)}
+tr.b td{font-weight:800;background:var(--tint)}
+tr.total td{font-weight:800;background:var(--tint2)}
+td.num,th.num{text-align:right}
+.filters{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end;margin-bottom:16px}
+.filters .field{margin:0;min-width:150px}
+.page-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.page-head h2{font-size:24px;flex:1}
+.pills{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.pill{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 14px;font-size:14px}
+.pill b{display:block;font-size:17px;font-variant-numeric:tabular-nums}
+.pill span{color:var(--muted);font-size:13px}
+
+/* tile jenis transaksi */
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.tile{display:flex;gap:14px;align-items:center;text-align:left;background:var(--card);border:1.5px solid var(--line);border-radius:var(--r);padding:18px;cursor:pointer;transition:transform .15s,border-color .2s,box-shadow .2s}
+.tile:hover{transform:translateY(-2px);border-color:var(--p);box-shadow:var(--shadow)}
+.tile .ti{width:48px;height:48px;border-radius:14px;background:var(--tint2);color:var(--p);display:grid;place-items:center;flex:none}
+.tile b{display:block;font-size:15px}
+.tile small{color:var(--muted);font-size:13px}
+.form-card{margin-bottom:20px}
+.form-card h3{margin-bottom:14px}
+.seg{display:flex;gap:8px;flex-wrap:wrap}
+.seg label{flex:1;min-width:150px;display:flex;gap:10px;align-items:center;border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;cursor:pointer;font-weight:600;font-size:14px}
+.seg label:has(input:checked){border-color:var(--p);background:var(--tint)}
+.item-row{display:grid;grid-template-columns:2.2fr .9fr .9fr 1.3fr 1.4fr 44px;gap:10px;align-items:center;margin-bottom:10px}
+.item-row .jum{font-weight:700;text-align:right;font-variant-numeric:tabular-nums}
+.sum{background:var(--tint);border-radius:14px;padding:14px 16px;font-size:15px}
+.sum div{display:flex;justify-content:space-between;gap:12px;padding:4px 0;font-variant-numeric:tabular-nums}
+.sum b{white-space:nowrap}
+.sum .grand{border-top:2px dashed var(--line);margin-top:8px;padding-top:10px;font-weight:800;font-size:18px}
+.warn-box{display:flex;gap:10px;background:color-mix(in srgb,var(--bad) 10%,var(--card));border:1px solid color-mix(in srgb,var(--bad) 35%,var(--line));color:var(--bad);border-radius:12px;padding:12px 14px;font-size:14px;font-weight:600;margin-top:10px}
+.info-box{display:flex;gap:10px;background:var(--tint);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:14px;margin-bottom:14px}
+.file-row{display:flex;align-items:center;gap:12px;padding:10px;border:1px solid var(--line);border-radius:12px;margin-bottom:10px}
+.file-row .th{width:52px;height:52px;border-radius:10px;background:var(--tint2);display:grid;place-items:center;overflow:hidden;flex:none}
+.file-row .th img{width:100%;height:100%;object-fit:cover}
+.file-row .nm{flex:1;min-width:0;font-size:14px}
+.file-row .nm b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.file-row select{width:auto;min-width:150px}
+.checks label{display:flex;gap:12px;align-items:center;padding:12px;border:1px solid var(--line);border-radius:12px;margin-bottom:8px;cursor:pointer}
+.checks label:has(input:checked){border-color:var(--p);background:var(--tint)}
+.pbk-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.pbk-tab{padding:9px 16px;border-radius:12px;border:1.5px solid var(--line);background:var(--card);font-weight:600;cursor:pointer;font-size:14px}
+.pbk-tab.active{background:var(--tint2);border-color:var(--p);color:var(--p)}
+.swatches{display:flex;gap:14px;flex-wrap:wrap}
+.swatch{width:104px;border:2px solid var(--line);border-radius:16px;background:var(--card);padding:10px;cursor:pointer;text-align:center;font-weight:600;font-size:14px;transition:transform .15s,border-color .2s}
+.swatch:hover{transform:translateY(-2px)}
+.swatch i{display:block;height:44px;border-radius:11px;margin-bottom:8px}
+.swatch.active{border-color:var(--p);box-shadow:0 0 0 4px color-mix(in srgb,var(--p) 16%,transparent)}
+.swatch.active::after{content:"Dipilih";display:block;color:var(--p);font-weight:700;font-size:12px}
+.logo-up{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+
+/* modal dan toast */
+.modal-bg{position:fixed;inset:0;background:rgba(10,12,24,.55);display:grid;place-items:center;padding:16px;z-index:2000;animation:fade .2s ease both;overflow-y:auto}
+@keyframes fade{from{opacity:0}}
+.modal{background:var(--card);border-radius:22px;width:100%;max-width:560px;max-height:calc(100vh - 32px);overflow-y:auto;padding:26px;box-shadow:0 30px 80px -20px rgba(0,0,0,.5);animation:pop .25s cubic-bezier(.2,.9,.3,1.1) both}
+.modal.wide{max-width:860px}
+@keyframes pop{from{opacity:0;transform:scale(.94) translateY(10px)}}
+.modal h3{font-size:20px;margin-bottom:6px}
+.modal .acts{display:flex;gap:10px;justify-content:flex-end;margin-top:20px;flex-wrap:wrap}
+.big-no{font-size:28px;font-weight:800;letter-spacing:.01em;text-align:center;background:var(--tint2);color:var(--p);border-radius:16px;padding:18px 12px;margin:14px 0;word-break:break-all}
+.kv{display:grid;grid-template-columns:repeat(2,1fr);gap:10px 20px;margin:14px 0}
+.kv div small{display:block;color:var(--muted);font-size:12px}
+.kv div b{font-size:14px}
+#toast-root{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:4000;display:grid;gap:8px;width:min(92vw,440px)}
+
+.toast{display:flex;gap:10px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-left:5px solid var(--ok);border-radius:14px;padding:13px 16px;box-shadow:var(--shadow);font-weight:600;font-size:14px;animation:pop .25s ease both}
+.toast.bad{border-left-color:var(--bad)}
+.toast.warn{border-left-color:var(--warn)}
+.skel{height:90px;border-radius:var(--r);background:linear-gradient(90deg,var(--tint) 25%,var(--tint2) 50%,var(--tint) 75%);background-size:200% 100%;animation:sh 1.3s infinite;margin-bottom:20px}
+@keyframes sh{to{background-position:-200% 0}}
+.spin{animation:rot 1s linear infinite}
+@keyframes rot{to{transform:rotate(360deg)}}
+
+@media (max-width:1100px){
+  .kpis{grid-template-columns:repeat(2,1fr)}
+  .g-main,.g-3{grid-template-columns:1fr}
+  .tiles{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:900px){
+  .pbk-sidebar{position:fixed;left:0;top:0;transform:translateX(-102%);box-shadow:var(--shadow);width:290px}
+  .nav-open .pbk-sidebar{transform:none}
+  .nav-open .scrim{opacity:1;pointer-events:auto}
+  .menu-btn{display:grid}
+  .topbar{padding:14px 16px}
+  .chip-date{display:none}
+  main#pbk-main{padding:4px 16px 40px}
+  .user-chip div:not(.avatar){display:none}
+  .user-chip{padding:4px}
+}
+@media (max-width:640px){
+  .kpis{grid-template-columns:1fr}
+  .row2,.row3,.tiles,.kv{grid-template-columns:1fr}
+  .item-row{grid-template-columns:1fr 1fr}
+  .item-row .full{grid-column:1/-1}
+  .topbar h2{font-size:18px}
+  .kpi-v{font-size:21px}
+  .modal{padding:20px}
+  .file-row{flex-wrap:wrap}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;transition-duration:.01ms!important}}
+/* Bilah atribusi: ditaruh paling akhir supaya pasti menang dari aturan padding/sidebar sebelumnya. */
+#pbk-credit{position:fixed;left:0;right:0;bottom:0;z-index:1500;display:flex;align-items:center;justify-content:center;gap:10px;height:40px;padding:0 14px;background:color-mix(in srgb,var(--card) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+#pbk-credit b{color:var(--text)}
+#pbk-credit a{width:27px;height:27px;border-radius:50%;display:grid;place-items:center;flex:none;color:var(--muted);border:1px solid var(--line);transition:color .18s,border-color .18s,background .18s,transform .18s}
+#pbk-credit a:hover{transform:scale(1.14) translateY(-1px)}
+#pbk-credit a.wa:hover{color:#25D366;border-color:#25D366;background:color-mix(in srgb,#25D366 12%,transparent)}
+#pbk-credit a.ig:hover{color:#E1306C;border-color:#E1306C;background:color-mix(in srgb,#E1306C 12%,transparent)}
+#pbk-credit a.pf:hover{color:var(--p);border-color:var(--p);background:var(--tint)}
+#pbk-credit a .ic{width:14px;height:14px}
+#login{padding-bottom:50px!important}
+main#pbk-main{padding-bottom:50px!important}
+.pbk-sidebar{padding-bottom:50px!important}
+@media (max-width:480px){#pbk-credit{gap:8px;height:36px}.pbk-credit-txt{display:none}}
+`;
+  var st = document.createElement('style'); st.id = 'pbk-css'; st.textContent = css;
+  (document.head || document.documentElement).appendChild(st);
+  try {
+    var fl = document.createElement('link'); fl.rel = 'stylesheet';
+    fl.href = 'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap';
+    (document.head || document.documentElement).appendChild(fl);
+  } catch (e) {}
+  window.addEventListener('error', function (e) {
+    var el = document.getElementById('boot-err');
+    if (el && !window.__appReady) el.textContent = 'Error: ' + (e.message || 'tidak diketahui');
+  });
+  setTimeout(function () {
+    var m = document.getElementById('boot-msg');
+    if (m && !window.__appReady) m.textContent = 'Memuat lebih lama dari biasanya. Periksa koneksi lalu muat ulang halaman.';
+  }, 7000);
+})();
+</script>
+<div id="app-root" style="position:fixed;top:0;left:0;right:0;bottom:0;z-index:2147483647;overflow:auto;background:#f4f5fa;color:#1a1f36">
+<div id="boot-loader" style="position:fixed;top:0;left:0;right:0;bottom:0;z-index:5000;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#f4f5fa;color:#1a1f36;font-family:Arial,sans-serif;transition:opacity .4s">
+  <div style="font-size:42px;font-weight:800;letter-spacing:2px">BR</div>
+  <div id="boot-msg" style="margin-top:10px;font-size:14px;opacity:.7">Memuat pembukuan...</div>
+  <div id="boot-err" style="margin-top:12px;font-size:12px;color:#b91c1c;max-width:340px;text-align:center;word-break:break-word"></div>
+</div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></symbol>
+<symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></symbol>
+<symbol id="i-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></symbol>
+<symbol id="i-users" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+<symbol id="i-truck" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></symbol>
+<symbol id="i-file" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8"/></symbol>
+<symbol id="i-chart" viewBox="0 0 24 24"><path d="M12 20V10M18 20V4M6 20v-4"/></symbol>
+<symbol id="i-percent" viewBox="0 0 24 24"><path d="M19 5L5 19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+<symbol id="i-db" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></symbol>
+<symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></symbol>
+<symbol id="i-user" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+<symbol id="i-logout" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></symbol>
+<symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></symbol>
+<symbol id="i-upload" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></symbol>
+<symbol id="i-camera" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></symbol>
+<symbol id="i-alert" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0zM12 9v4M12 17h.01"/></symbol>
+<symbol id="i-wallet" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></symbol>
+<symbol id="i-trend" viewBox="0 0 24 24"><path d="M23 6l-9.5 9.5-5-5L1 18M17 6h6v6"/></symbol>
+<symbol id="i-down" viewBox="0 0 24 24"><path d="M17 7L7 17M17 17H7V7"/></symbol>
+<symbol id="i-up" viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></symbol>
+<symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></symbol>
+<symbol id="i-eye" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></symbol>
+<symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></symbol>
+<symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></symbol>
+<symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></symbol>
+<symbol id="i-building" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4M8 6h.01M16 6h.01M12 6h.01M12 10h.01M12 14h.01M16 10h.01M16 14h.01M8 10h.01M8 14h.01"/></symbol>
+<symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></symbol>
+<symbol id="i-bell" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0"/></symbol>
+<symbol id="i-edit" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4z"/></symbol>
+<symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
+<symbol id="i-back" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
+<symbol id="i-wa" viewBox="0 0 24 24"><path d="M21 11.5a8.5 8.5 0 0 1-12.9 7.3L3 20l1.3-5A8.5 8.5 0 1 1 21 11.5z"/><path d="M8.3 9.4c.3 2.1 2.2 4.5 4.6 5.5 1 .4 1.3-.2 1.8-.7.3-.3.2-.6-.1-.8-.4-.3-1.2-.8-1.5-1-.3-.1-.5-.1-.7.1-.2.3-.5.7-.7.8-.2.1-.4.1-.7-.1-1-.5-1.8-1.3-2.3-2.3-.1-.2-.1-.4 0-.6.1-.2.4-.5.6-.7.2-.2.2-.4.1-.6-.2-.5-.6-1.4-.8-1.8-.2-.4-.4-.4-.6-.4-.2 0-.5.1-.7.3-.2.3-.5.8-.5 1.4 0 .1 0 .3.1.5z" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-ig" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20"/></symbol>
+</defs>
+</svg>
+
+<div id="topbar-progress"></div>
+<div id="toast-root"></div>
+<div id="modal-root"></div>
+
+<!-- LOGIN -->
+<section id="login" class="hidden">
+  <div class="login-card view">
+    <div class="login-brand">
+      <div class="logo" id="login-logo">BR</div>
+      <h1 id="login-nama">Pembukuan</h1>
+      <p>Masuk untuk melanjutkan</p>
+    </div>
+    <form id="login-form" autocomplete="on">
+      <div class="field"><label class="f" for="lg-user">Username</label><input id="lg-user" name="username" autocomplete="username" required autocapitalize="none" spellcheck="false"></div>
+      <div class="field"><label class="f" for="lg-pass">Password</label><input id="lg-pass" name="password" type="password" autocomplete="current-password" required></div>
+      <div id="lg-err" class="err-text hidden"></div>
+      <button class="btn primary block" id="lg-btn" type="submit" style="margin-top:8px">Masuk</button>
+    </form>
+  </div>
+</section>
+
+<!-- ATRIBUSI: selalu terlihat, ramping, di bawah modal/toast -->
+<footer id="pbk-credit" aria-label="Dibuat oleh SujatmikoDev">
+  <span class="pbk-credit-txt">Dibuat oleh <b>SujatmikoDev</b></span>
+  <a class="wa" href="https://wa.me/6281241125930" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp SujatmikoDev" title="WhatsApp"><svg class="ic"><use href="#i-wa"/></svg></a>
+  <a class="ig" href="https://instagram.com/sujatmiko2206" target="_blank" rel="noopener noreferrer" aria-label="Instagram @sujatmiko2206" title="Instagram"><svg class="ic"><use href="#i-ig"/></svg></a>
+  <a class="pf" href="https://sujatmikodev.github.io/myportofolio/#beranda" target="_blank" rel="noopener noreferrer" aria-label="Portofolio SujatmikoDev" title="Portofolio"><svg class="ic"><use href="#i-globe"/></svg></a>
+</footer>
+
+<!-- SHELL -->
+<div id="shell" class="hidden">
+  <aside class="pbk-sidebar" id="pbk-sidebar">
+    <div class="brand">
+      <div class="logo sm" id="side-logo">BR</div>
+      <div><b id="side-nama">Pembukuan</b><small id="side-sub">Sistem Pembukuan</small></div>
+    </div>
+    <nav id="nav"></nav>
+    <div class="side-foot"><small style="color:var(--muted);padding:0 12px;display:block">Versi 2.0</small></div>
+  </aside>
+  <div class="scrim" data-act="closeNav"></div>
+  <div class="pbk-content">
+    <header class="topbar">
+      <button class="icon-btn menu-btn" data-act="openNav" aria-label="Buka menu"><svg class="ic"><use href="#i-menu"/></svg></button>
+      <div class="greet"><h2 id="tb-title">Beranda</h2><p id="tb-sub"></p></div>
+      <div class="chip-date"><svg class="ic"><use href="#i-cal"/></svg><span id="tb-date"></span></div>
+      <div class="user-chip" id="user-chip" data-act="userMenu" tabindex="0" role="button" aria-label="Menu pengguna">
+        <div class="avatar" id="u-av">U</div>
+        <div><b id="u-nama">-</b><small id="u-peran">-</small></div>
+        <div class="pbk-menu hidden" id="user-menu">
+          <button data-act="gantiPass"><svg class="ic"><use href="#i-lock"/></svg>Ganti password</button>
+          <button data-act="installApp" id="btn-install" class="hidden"><svg class="ic"><use href="#i-download"/></svg>Instal aplikasi</button>
+          <button data-act="logout"><svg class="ic"><use href="#i-logout"/></svg>Keluar</button>
+        </div>
+      </div>
+    </header>
+    <main id="pbk-main"></main>
+  </div>
+</div>
+
+</div><!-- /app-root -->
+
+<script>
+/* =====================================================================
+   PEMBUKUAN PT BRA - FRONTEND v2.0
+   Tersambung ke Code.gs lewat google.script.run.rpc(). Jika dibuka di luar
+   Google (mis. klik dua kali file ini), berjalan dalam MODE PRATINJAU dengan
+   data contoh agar tampilan bisa dilihat.
+   ===================================================================== */
+'use strict';
+/* ISI HANYA JIKA file ini ditaruh di Blogspot: tempel URL deploy /exec milik skrip Code.gs.
+   Kosongkan ("") jika file ini dipasang sebagai index di dalam Apps Script. */
+const GAS_URL = "https://script.google.com/macros/s/AKfycbz-njwq90jBeJ730LkIwYv8BstK2WwitKlFEmagp4luU4TL3-ggyRbv74SM8MRiiYE/exec";
+try { const r = document.getElementById('app-root'); if (r && r.parentNode !== document.body) document.body.appendChild(r); } catch (e) {}
+const APP = document.getElementById('app-root') || document.body;
+const $ = (s, r = APP) => r.querySelector(s);
+const $$ = (s, r = APP) => Array.from(r.querySelectorAll(s));
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const num = n => Math.round(Number(n) || 0).toLocaleString('id-ID');
+const rp = n => (Number(n) < 0 ? '-Rp ' : 'Rp ') + Math.abs(Math.round(Number(n) || 0)).toLocaleString('id-ID');
+const ic = (n, cls) => `<svg class="ic ${cls || ''}" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-${n}"/></svg>`;
+const BULAN = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+const tgl = s => { if (!s) return '-'; const p = String(s).slice(0, 10).split('-'); return p.length === 3 ? `${Number(p[2])} ${BULAN[Number(p[1]) - 1]} ${p[0]}` : s; };
+const short = n => { n = Number(n) || 0; const a = Math.abs(n); const f = (v, u) => (v).toFixed(v >= 100 ? 0 : 1).replace('.', ',').replace(',0', '') + ' ' + u; return a >= 1e9 ? f(n / 1e9, 'M') : a >= 1e6 ? f(n / 1e6, 'jt') : a >= 1e3 ? f(n / 1e3, 'rb') : String(Math.round(n)); };
+const todayStr = () => new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Makassar' }).format(new Date());
+const nowMonth = () => todayStr().slice(0, 7);
+
+const S = { token: null, user: null, pub: {}, master: null, page: '', txType: null, items: [], files: [], open: [], rep: null, tutupBulan: null };
+
+const JENIS_LABEL = { PENJUALAN: 'Penjualan', PEMBELIAN: 'Pembelian', BIAYA: 'Biaya', PEMBAYARAN_MASUK: 'Terima pembayaran', PEMBAYARAN_KELUAR: 'Bayar hutang', REMBES_TALANGAN: 'Rembes talangan', KAS_AWAL: 'Kas awal', SETORAN_MODAL: 'Setoran modal', DIVIDEN: 'Dividen/prive' };
+const JENIS_ICON = { PENJUALAN: 'file', PEMBELIAN: 'truck', BIAYA: 'wallet', PEMBAYARAN_MASUK: 'down', PEMBAYARAN_KELUAR: 'up', REMBES_TALANGAN: 'user', KAS_AWAL: 'db', SETORAN_MODAL: 'building', DIVIDEN: 'trend' };
+const REQ = { PENJUALAN: { any: ['PO', 'BA Join Survey'] }, PEMBELIAN: { any: ['Nota/Bon', 'Faktur'] }, BIAYA: { all: ['Bukti Transfer', 'Nota/Bon'] }, PEMBAYARAN_MASUK: { all: ['Bukti Transfer'] }, PEMBAYARAN_KELUAR: { all: ['Bukti Transfer', 'Nota/Bon'] }, REMBES_TALANGAN: { all: ['Bukti Transfer'] }, KAS_AWAL: { all: ['Bukti Transfer'] }, SETORAN_MODAL: { all: ['Bukti Transfer'] }, DIVIDEN: { all: ['Bukti Transfer'] } };
+const JENIS_LAMP = ['Bukti Transfer', 'Nota/Bon', 'Faktur', 'PO', 'BA Join Survey', 'Kwitansi', 'Lainnya'];
+const TEMAS = [['merah', 'Merah Emas', 'linear-gradient(135deg,#B71C1C,#D4A017)'], ['burgundy', 'Burgundy Emas', 'linear-gradient(135deg,#6D0F2B,#C9A227)'], ['ungu', 'Ungu Permata', 'linear-gradient(135deg,#5B21B6,#D4AF37)'], ['biru', 'Biru Samudra', 'linear-gradient(135deg,#2563EB,#38BDF8)'], ['hijau', 'Hijau Zamrud', 'linear-gradient(135deg,#059669,#34D399)']];
+
+/* ------------------------------ API ------------------------------ */
+let pending = 0;
+function progress(on) {
+  const b = $('#topbar-progress');
+  pending += on ? 1 : -1; if (pending < 0) pending = 0;
+  if (pending > 0) { b.classList.add('on'); b.style.width = '70%'; }
+  else { b.style.width = '100%'; setTimeout(() => { if (!pending) { b.classList.remove('on'); b.style.width = '0'; } }, 250); }
+}
+function api(action, payload) {
+  return new Promise((resolve, reject) => {
+    progress(true);
+    const done = r => {
+      progress(false);
+      if (r && r.ok) return resolve(r.data);
+      const m = (r && r.msg) || 'Terjadi kesalahan.';
+      if (/Sesi habis|belum login/i.test(m)) { toast('Sesi berakhir. Silakan login kembali.', 'warn'); forceLogout(); }
+      reject(new Error(m));
+    };
+    const fail = e => { progress(false); reject(new Error((e && e.message) || 'Gagal menghubungi server.')); };
+    if (GAS_URL) {
+      fetch(GAS_URL, { method: 'POST', body: JSON.stringify({ token: S.token, action: action, payload: payload || {} }) })
+        .then(r => r.json()).then(done, e => fail({ message: 'Gagal menghubungi server. Periksa koneksi dan URL deploy.' }));
+    } else if (typeof google !== 'undefined' && google.script && google.script.run) {
+      google.script.run.withSuccessHandler(done).withFailureHandler(fail).rpc(S.token, action, payload || {});
+    } else {
+      mockRpc(action, payload || {}).then(done, fail);
+    }
+  });
+}
+
+/* ------------------------------ UI util ------------------------------ */
+function toast(msg, kind) {
+  const el = document.createElement('div');
+  el.className = 'toast ' + (kind || '');
+  el.innerHTML = ic(kind === 'bad' ? 'alert' : kind === 'warn' ? 'alert' : 'check') + `<span>${esc(msg)}</span>`;
+  $('#toast-root').appendChild(el);
+  setTimeout(() => { el.style.transition = 'opacity .3s'; el.style.opacity = '0'; setTimeout(() => el.remove(), 320); }, kind === 'bad' ? 5200 : 3200);
+}
+function modal(html, opt) {
+  opt = opt || {};
+  closeModal();
+  const bg = document.createElement('div');
+  bg.className = 'modal-bg'; bg.id = 'modal-bg';
+  bg.innerHTML = `<div class="modal ${opt.wide ? 'wide' : ''}" role="dialog" aria-modal="true">${html}</div>`;
+  if (!opt.force) bg.addEventListener('mousedown', e => { if (e.target === bg) closeModal(); });
+  bg.dataset.force = opt.force ? '1' : '';
+  $('#modal-root').appendChild(bg);
+  const f = $('input,select,textarea', bg); if (f && !opt.noFocus) setTimeout(() => f.focus(), 50);
+  return bg;
+}
+function closeModal() { const m = $('#modal-bg'); if (m) m.remove(); }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { const m = $('#modal-bg'); if (m && !m.dataset.force) closeModal(); const um = $('#user-menu'); if (um) um.classList.add('hidden'); } });
+function confirmBox(title, text, okLabel) {
+  return new Promise(res => {
+    const bg = modal(`<h3>${esc(title)}</h3><p style="color:var(--muted);margin:6px 0 0">${text}</p><div class="acts"><button class="btn" data-x="no">Batal</button><button class="btn primary" data-x="ok">${esc(okLabel || 'Ya, lanjutkan')}</button></div>`, { noFocus: true });
+    bg.addEventListener('click', e => { const b = e.target.closest('[data-x]'); if (!b) return; closeModal(); res(b.dataset.x === 'ok'); });
+  });
+}
+function promptBox(title, label, okLabel) {
+  return new Promise(res => {
+    const bg = modal(`<h3>${esc(title)}</h3><div class="field" style="margin-top:14px"><label class="f">${esc(label)}</label><textarea id="pb-t" maxlength="300"></textarea></div><div class="acts"><button class="btn" data-x="no">Batal</button><button class="btn primary" data-x="ok">${esc(okLabel || 'Simpan')}</button></div>`);
+    bg.addEventListener('click', e => { const b = e.target.closest('[data-x]'); if (!b) return; const v = $('#pb-t', bg).value.trim(); closeModal(); res(b.dataset.x === 'ok' ? v : null); });
+  });
+}
+function chip(t, k) { return `<span class="chip ${k || 'mute'}">${esc(t)}</span>`; }
+function buktiChip(b) { return b === 'LENGKAP' ? chip('Bukti lengkap', 'ok') : b === 'ALASAN' ? chip('Tanpa bukti (ada alasan)', 'warn') : b === 'KURANG' ? chip('Bukti kurang', 'bad') : chip('Void', 'mute'); }
+function statusChip(s) {
+  const m = { LUNAS: ['Lunas', 'ok'], BERJALAN: ['Berjalan', 'info'], TERBIT: ['Terbit', 'info'], MENUNGGU_KWITANSI: ['Menunggu kwitansi', 'warn'], BELUM_LUNAS: ['Belum lunas', 'warn'], VOID: ['Void', 'mute'], BELUM_REMBES: ['Belum direm bes', 'warn'], SUDAH_REMBES: ['Sudah direm bes', 'ok'], AKTIF: ['Aktif', 'ok'] };
+  const x = m[s] || [s, 'mute']; return chip(x[0], x[1]);
+}
+function skeleton() { return '<div class="skel"></div><div class="skel" style="height:220px"></div><div class="skel"></div>'; }
+function countUp(el, to, fmt) {
+  const dur = 700, t0 = performance.now(); to = Number(to) || 0;
+  if (matchMedia('(prefers-reduced-motion:reduce)').matches) { el.textContent = fmt(to); return; }
+  (function step(t) { const k = Math.min((t - t0) / dur, 1), e = 1 - Math.pow(1 - k, 3); el.textContent = fmt(to * e); if (k < 1) requestAnimationFrame(step); else el.textContent = fmt(to); })(t0);
+}
+function brandLogo(el, size) { if (!el) return; const L = S.pub.logo; if (L) el.innerHTML = `<img alt="Logo" src="${L}">`; else el.textContent = (S.pub.nama_perusahaan || 'BR').replace(/^PT\.?\s*/i, '').split(/\s+/).slice(0, 2).map(w => w[0]).join('').toUpperCase(); }
+function applyBrand() {
+  const h = document.documentElement;
+  if (S.pub.tema) h.dataset.tema = S.pub.tema;
+  if (S.pub.mode) h.dataset.mode = S.pub.mode;
+  const nm = S.pub.nama_perusahaan || 'Pembukuan';
+  document.title = 'Pembukuan - ' + nm;
+  ['#login-nama', '#side-nama'].forEach(s => { const e = $(s); if (e) e.textContent = nm; });
+  brandLogo($('#login-logo')); brandLogo($('#side-logo'));
+  try { localStorage.setItem('pbk_pub', JSON.stringify({ tema: S.pub.tema, mode: S.pub.mode })); } catch (e) {}
+  syncAutoTheme();
+}
+let autoThemeTimer = null, autoThemePaused = false;
+function syncAutoTheme() {
+  if (autoThemeTimer) { clearInterval(autoThemeTimer); autoThemeTimer = null; }
+  if (!S.pub.tema_otomatis) return;
+  const list = TEMAS.map(t => t[0]);
+  let i = Math.max(0, list.indexOf(document.documentElement.dataset.tema));
+  const detik = Math.max(5, Math.min(120, Number(S.pub.tema_interval) || 15));
+  autoThemeTimer = setInterval(() => {
+    if (autoThemePaused || document.hidden) return;
+    i = (i + 1) % list.length;
+    document.documentElement.dataset.tema = list[i];
+  }, detik * 1000);
+}
+function fileToB64(file) { return new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(String(r.result).split(',')[1]); r.onerror = () => rej(new Error('Gagal membaca file.')); r.readAsDataURL(file); }); }
+function loadImg(file) { return new Promise((res, rej) => { const url = URL.createObjectURL(file); const im = new Image(); im.onload = () => { URL.revokeObjectURL(url); res(im); }; im.onerror = () => rej(new Error('Gambar tidak bisa dibaca.')); im.src = url; }); }
+async function compressImage(file, max, type, q) {
+  const im = await loadImg(file);
+  let w = im.naturalWidth, h = im.naturalHeight;
+  const k = Math.min(1, max / Math.max(w, h)); w = Math.round(w * k); h = Math.round(h * k);
+  const c = document.createElement('canvas'); c.width = w; c.height = h;
+  const g = c.getContext('2d');
+  if (type === 'image/jpeg') { g.fillStyle = '#fff'; g.fillRect(0, 0, w, h); }
+  g.drawImage(im, 0, 0, w, h);
+  const url = c.toDataURL(type, q);
+  return { dataUrl: url, b64: url.split(',')[1], mime: type };
+}
+function downloadB64(b64, name) {
+  const bin = atob(b64), arr = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) arr[i] = bin.charCodeAt(i);
+  const blob = new Blob([arr], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+}
+function setBusy(btn, on, label) { if (!btn) return; if (on) { btn.dataset.l = btn.innerHTML; btn.disabled = true; btn.innerHTML = ic('sun', 'spin') + ' ' + (label || 'Memproses...'); } else { btn.disabled = false; if (btn.dataset.l) btn.innerHTML = btn.dataset.l; } }
+
+/* ------------------------------ AUTH & ROUTING ------------------------------ */
+function boot() {
+  try { const t = sessionStorage.getItem('ptbra'); if (t) { const o = JSON.parse(t); S.token = o.token; S.user = o.user; } } catch (e) {}
+  // Tampilkan dari cache perangkat DULU, tanpa menunggu server, supaya terasa instan.
+  try { const c = JSON.parse(localStorage.getItem('pbk_pub') || 'null'); if (c) S.pub = c; } catch (e) {}
+  applyBrand();
+  if (!cssOk()) { const e = document.getElementById('boot-err'); if (e) e.textContent = 'Gaya tampilan gagal dimuat oleh halaman ini.'; }
+  if (S.token && S.user) startApp(); else showLogin();
+  appReady();
+  // Di belakang layar, ambil pengaturan terbaru (nama, logo, tema resmi) dan perbarui diam-diam.
+  api('getPublicSettings').then(p => { S.pub = p; applyBrand(); }).catch(() => {});
+}
+function appReady() {
+  window.__appReady = true;
+  try { const r = document.getElementById('app-root'); if (r) { r.style.color = ''; r.style.background = ''; } } catch (e) {}
+  try { document.querySelectorAll('.blogger-element,#navbar-iframe,.widget,.post-footer,.comments,.header-widget').forEach(function (e) { e.style.display = 'none'; }); } catch (e) {}
+  var b = document.getElementById('boot-loader');
+  if (b) { b.style.opacity = '0'; setTimeout(function () { if (b.parentNode) b.parentNode.removeChild(b); }, 450); }
+}
+function cssOk() { try { return !!getComputedStyle(document.documentElement).getPropertyValue('--p').trim(); } catch (e) { return true; } }
+function showLogin() {
+  $('#shell').classList.add('hidden'); $('#login').classList.remove('hidden');
+  S.token = null; S.user = null; try { sessionStorage.removeItem('ptbra'); } catch (e) {}
+  setTimeout(() => { const u = $('#lg-user'); if (u) u.focus(); }, 60);
+}
+function forceLogout() { closeModal(); showLogin(); }
+$('#login-form').addEventListener('submit', async e => {
+  e.preventDefault();
+  const btn = $('#lg-btn'), err = $('#lg-err'); err.classList.add('hidden');
+  btn.disabled = true; btn.textContent = 'Memeriksa...';
+  try {
+    const r = await api('login', { username: $('#lg-user').value, password: $('#lg-pass').value });
+    if (!r.success) { err.textContent = r.msg; err.classList.remove('hidden'); return; }
+    S.token = r.token; S.user = { nama: r.nama, peran: r.peran };
+    try { sessionStorage.setItem('ptbra', JSON.stringify({ token: S.token, user: S.user })); } catch (x) {}
+    $('#lg-pass').value = '';
+    startApp();
+    if (r.wajib_ganti) gantiPass(true);
+  } catch (x) { err.textContent = x.message; err.classList.remove('hidden'); }
+  finally { btn.disabled = false; btn.textContent = 'Masuk'; }
+});
+
+const NAV_DIR = [
+  ['dashboard', 'Beranda', 'home'], ['catat', 'Catat Transaksi', 'plus'], ['daftar', 'Daftar Transaksi', 'list'],
+  ['_', 'Buku & Laporan'],
+  ['bukukas', 'Buku Kas', 'book'], ['piutang', 'Piutang', 'users'], ['hutang', 'Hutang', 'truck'], ['biaya', 'Buku Biaya', 'file'], ['labarugi', 'Laba Rugi', 'chart'], ['pajak', 'Rekap Pajak', 'percent'],
+  ['_', 'Kontrol'],
+  ['tutup', 'Cek Tutup Buku', 'lock'],
+  ['_', 'Pengaturan'],
+  ['master', 'Data Master', 'db'], ['pajakset', 'Pengaturan Pajak', 'sliders'], ['tampilan', 'Tampilan', 'drop']
+];
+const NAV_ADM = [['pengguna', 'Pengguna', 'users'], ['tampilan', 'Tampilan & Identitas', 'drop'], ['sistem', 'Info Sistem', 'shield']];
+const TITLES = { dashboard: 'Beranda', catat: 'Catat Transaksi', daftar: 'Daftar Transaksi', bukukas: 'Buku Kas', piutang: 'Buku Piutang', hutang: 'Buku Hutang', biaya: 'Buku Biaya', labarugi: 'Laba Rugi', pajak: 'Rekap Pajak', tutup: 'Cek Tutup Buku', master: 'Data Master', pajakset: 'Pengaturan Pajak', pengguna: 'Pengguna', tampilan: 'Tampilan', sistem: 'Info Sistem' };
+
+function startApp() {
+  $('#login').classList.add('hidden'); $('#shell').classList.remove('hidden');
+  const dir = S.user.peran === 'DIREKTUR';
+  $('#nav').innerHTML = (dir ? NAV_DIR : NAV_ADM).map(n => n[0] === '_' ? `<div class="nav-group">${esc(n[1])}</div>` : `<button class="nav-item" data-act="nav" data-page="${n[0]}" id="nav-${n[0]}">${ic(n[2])}<span>${esc(n[1])}</span></button>`).join('');
+  $('#u-nama').textContent = S.user.nama; $('#u-peran').textContent = dir ? 'Direktur Finance' : 'Administrator';
+  $('#u-av').textContent = S.user.nama.split(/\s+/).slice(0, 2).map(w => w[0]).join('').toUpperCase();
+  $('#side-sub').textContent = dir ? 'Sistem Pembukuan PKP' : 'Panel Admin';
+  $('#tb-date').textContent = new Intl.DateTimeFormat('id-ID', { timeZone: 'Asia/Makassar', weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }).format(new Date());
+  S.txType = null; S.master = null;
+  go(dir ? 'dashboard' : 'pengguna');
+}
+function greeting() { const h = Number(new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Makassar', hour: '2-digit', hour12: false }).format(new Date())); return h < 11 ? 'Selamat pagi' : h < 15 ? 'Selamat siang' : h < 18 ? 'Selamat sore' : 'Selamat malam'; }
+async function ensureMaster(force) { if (!S.master || force) S.master = await api('getMasters'); return S.master; }
+
+const PAGES = {};
+async function go(page, arg) {
+  S.page = page;
+  APP.classList.remove('nav-open');
+  $$('.nav-item').forEach(b => b.classList.toggle('active', b.dataset.page === page));
+  const main = $('#pbk-main');
+  if (page === 'dashboard') { $('#tb-title').textContent = `${greeting()}, ${S.user.nama.split(' ')[0]}`; $('#tb-sub').textContent = 'Ringkasan keuangan perusahaan hari ini'; }
+  else { $('#tb-title').textContent = TITLES[page] || ''; $('#tb-sub').textContent = ''; }
+  main.innerHTML = skeleton();
+  try {
+    const html = await PAGES[page](arg);
+    if (S.page !== page) return;
+    main.innerHTML = `<div class="view">${html.html}</div>`;
+    APP.scrollTop = 0;
+    if (html.after) html.after(main);
+  } catch (e) {
+    if (S.page !== page) return;
+    main.innerHTML = `<div class="card view"><h3>Halaman tidak bisa dimuat</h3><p class="sub">${esc(e.message)}</p><button class="btn primary" data-act="nav" data-page="${page}">Coba lagi</button></div>`;
+  }
+}
+
+/* ------------------------------ DASHBOARD ------------------------------ */
+PAGES.dashboard = async () => {
+  const [d, M] = await Promise.all([api('getDashboard'), ensureMaster()]);
+  const L = d.laba_bulan, base = Math.max(L.omzet, 1);
+  const pr = (label, val, cls) => `<div class="prog"><div class="t"><span>${label}</span><b>${rp(val)}</b></div><div class="bg"><div class="fg" style="width:${Math.max(0, Math.min(100, val / base * 100)).toFixed(1)}%;${cls || ''}"></div></div></div>`;
+  // chart arus kas
+  const W = 560, H = 230, pl = 46, pb = 28, pt = 10, gh = H - pb - pt, gw = W - pl;
+  const maxV = Math.max(1, ...d.arus.map(a => Math.max(a.masuk, a.keluar)));
+  const nice = (() => { const e = Math.pow(10, Math.floor(Math.log10(maxV))); const f = maxV / e; return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 5 ? 5 : 10) * e; })();
+  let svg = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Grafik arus kas 6 bulan">`;
+  for (let i = 0; i <= 4; i++) { const y = pt + gh - gh * i / 4; svg += `<line x1="${pl}" x2="${W}" y1="${y}" y2="${y}" stroke="var(--line)" stroke-dasharray="${i ? '4 4' : '0'}"/><text x="${pl - 8}" y="${y + 4}" text-anchor="end" font-size="11" fill="var(--muted)">${short(nice * i / 4)}</text>`; }
+  const gwid = gw / d.arus.length;
+  d.arus.forEach((a, i) => {
+    const x0 = pl + i * gwid + gwid * 0.18, bw = gwid * 0.28;
+    const h1 = gh * a.masuk / nice, h2 = gh * a.keluar / nice;
+    svg += `<rect class="bar" style="animation-delay:${i * 70}ms" x="${x0}" y="${pt + gh - h1}" width="${bw}" height="${Math.max(h1, 0)}" rx="6" fill="var(--p)"/>`;
+    svg += `<rect class="bar" style="animation-delay:${i * 70 + 40}ms" x="${x0 + bw + 6}" y="${pt + gh - h2}" width="${bw}" height="${Math.max(h2, 0)}" rx="6" fill="var(--p2)"/>`;
+    const bl = BULAN[Number(a.bulan.slice(5, 7)) - 1];
+    svg += `<text x="${x0 + bw + 3}" y="${H - 8}" text-anchor="middle" font-size="12" fill="var(--muted)">${bl}</text>`;
+  });
+  svg += '</svg>';
+  // donut umur piutang
+  const A = d.aging, segs = [['Belum jatuh tempo', A.belum, 'var(--ok)'], ['Menunggu kwitansi', A.menunggu, 'var(--info)'], ['Telat 1-30 hari', A.d30, 'var(--warn)'], ['Telat 31-60 hari', A.d60, '#EA580C'], ['Telat > 60 hari', A.d90, 'var(--bad)']];
+  const tot = segs.reduce((s, x) => s + x[1], 0), C = 2 * Math.PI * 46;
+  let off = 0, dsvg = `<svg class="donut" width="130" height="130" viewBox="0 0 120 120" role="img" aria-label="Umur piutang"><circle cx="60" cy="60" r="46" fill="none" stroke="var(--tint2)" stroke-width="16"/>`;
+  if (tot > 0) segs.forEach(s => { if (!s[1]) return; const len = C * s[1] / tot; dsvg += `<circle class="seg" cx="60" cy="60" r="46" fill="none" stroke="${s[2]}" stroke-width="16" style="stroke-dasharray:${len} ${C - len};stroke-dashoffset:${-off}"/>`; off += len; });
+  dsvg += `<text x="60" y="58" text-anchor="middle" font-size="11" fill="var(--muted)" font-family="inherit">Piutang</text><text x="60" y="74" text-anchor="middle" font-size="14" font-weight="800" fill="var(--text)" font-family="inherit">${short(d.piutang)}</text></svg>`;
+  const per = d.perhatian.length ? d.perhatian.map(p => `<div class="li ${p.tipe === 'tutup' ? 'click' : ''}" ${p.tipe === 'tutup' ? 'data-act="nav" data-page="tutup"' : p.tipe === 'bukti' ? 'data-act="nav" data-page="daftar" data-arg="KURANG"' : ''}><div class="dot" style="background:color-mix(in srgb,var(--${p.tipe === 'telat' ? 'bad' : 'warn'}) 15%,var(--card));color:var(--${p.tipe === 'telat' ? 'bad' : 'warn'})">${ic('alert')}</div><div class="m"><b>${esc(p.teks)}</b>${p.nilai ? `<small>${rp(p.nilai)}</small>` : ''}</div></div>`).join('') : `<div class="empty">${ic('check')}<br>Tidak ada yang perlu perhatian.</div>`;
+  const terbaru = d.terbaru.length ? d.terbaru.map(t => `<div class="li click" data-act="openTx" data-id="${esc(t.id)}"><div class="dot">${ic(JENIS_ICON[t.jenis] || 'file')}</div><div class="m"><b>${esc(t.nomor_bukti)} ${t.status === 'VOID' ? chip('Void') : ''}</b><small>${esc(JENIS_LABEL[t.jenis] || t.jenis)}${t.pihak ? ' - ' + esc(t.pihak) : ''} - ${tgl(t.tanggal)}</small></div><div class="r">${rp(t.total)}</div></div>`).join('') : `<div class="empty">Belum ada transaksi. Mulai dengan mencatat KAS AWAL PERUSAHAAN.<br><br><button class="btn primary" data-act="nav" data-page="catat">Catat transaksi</button></div>`;
+  const html = `
+  <div class="grid kpis">
+    <div class="card kpi"><div class="kpi-top"><div class="kpi-ic c-ok">${ic('wallet')}</div><div><div class="kpi-l">Saldo kas</div><div class="kpi-s">Uang riil di rekening/kas</div></div></div><div class="kpi-v" data-c="${d.kas}">${rp(0)}</div></div>
+    <div class="card kpi"><div class="kpi-top"><div class="kpi-ic c-info">${ic('users')}</div><div><div class="kpi-l">Piutang client</div><div class="kpi-s">${d.invoice_terbuka} invoice belum lunas</div></div></div><div class="kpi-v" data-c="${d.piutang}">${rp(0)}</div></div>
+    <div class="card kpi"><div class="kpi-top"><div class="kpi-ic c-bad">${ic('truck')}</div><div><div class="kpi-l">Hutang supplier</div><div class="kpi-s">Tagihan belum dibayar</div></div></div><div class="kpi-v" data-c="${d.hutang}">${rp(0)}</div></div>
+    <div class="card kpi"><div class="kpi-top"><div class="kpi-ic c-warn">${ic('user')}</div><div><div class="kpi-l">Hutang talangan</div><div class="kpi-s">Uang pribadi belum direm bes</div></div></div><div class="kpi-v" data-c="${d.talangan}">${rp(0)}</div></div>
+  </div>
+  <div class="grid g-main">
+    <div class="card"><h3>Arus kas 6 bulan</h3><p class="sub">Uang masuk dan uang keluar per bulan (tanpa transaksi void)</p>
+      <div class="legend"><span><i style="background:var(--p)"></i>Uang masuk</span><span><i style="background:var(--p2)"></i>Uang keluar</span></div>
+      <div class="chart">${svg}</div></div>
+    <div class="card"><h3>Umur piutang</h3><p class="sub">Sisa tagihan menurut jatuh tempo</p>
+      <div class="donut-wrap">${dsvg}<div class="donut-list">${segs.map(s => `<div><i style="background:${s[2]}"></i><span>${s[0]}</span><span>${short(s[1])}</span></div>`).join('')}</div></div></div>
+  </div>
+  <div class="grid g-3">
+    <div class="card"><h3>Laba bulan ini</h3><p class="sub">Dasar akrual, penjualan tanpa PPN</p>
+      ${pr('Penjualan', L.omzet)}${pr('Pembelian & biaya langsung', L.hpp, 'background:var(--info)')}${pr('Biaya operasional', L.operasional, 'background:var(--warn)')}${pr('Laba sebelum pajak', L.laba, 'background:var(--ok)')}
+      <div class="hint">Laba tahun ini: <b>${rp(d.laba_tahun.laba)}</b> - Estimasi PPh bulan ini: <b>${rp(d.pph_estimasi_bulan)}</b></div></div>
+    <div class="card"><h3>PPN bulan ini</h3><p class="sub">Keluaran dikurangi masukan</p>
+      <div class="sum"><div><span>PPN keluaran</span><b>${rp(d.ppn_bulan.keluaran)}</b></div><div><span>PPN masukan</span><b>${rp(d.ppn_bulan.masukan)}</b></div><div class="grand"><span>${d.ppn_bulan.selisih >= 0 ? 'Kurang bayar' : 'Lebih bayar'}</span><b>${rp(Math.abs(d.ppn_bulan.selisih))}</b></div></div>
+      <div style="margin-top:14px"><button class="btn sm" data-act="nav" data-page="pajak">Lihat rekap pajak</button></div></div>
+    <div class="card"><h3>Perlu perhatian</h3><p class="sub">Hal yang sebaiknya dicek</p><div class="list">${per}</div></div>
+  </div>
+  <div class="card"><div class="page-head" style="margin-bottom:8px"><h3 style="flex:1">Transaksi terbaru</h3><button class="btn sm" data-act="nav" data-page="daftar">Lihat semua</button></div><div class="list">${terbaru}</div></div>`;
+  return { html, after: m => { $$('[data-c]', m).forEach(el => countUp(el, el.dataset.c, rp)); } };
+};
+
+/* ------------------------------ CATAT TRANSAKSI ------------------------------ */
+const TILES = [['PENJUALAN', 'Penjualan (Invoice)', 'Tagihan ke client'], ['PEMBELIAN', 'Pembelian material', 'Beli dari supplier'], ['BIAYA', 'Biaya & operasional', 'Wifi, sewa, gaji, dll'], ['PEMBAYARAN_MASUK', 'Terima pembayaran', 'Client membayar invoice'], ['PEMBAYARAN_KELUAR', 'Bayar hutang', 'Bayar tagihan supplier'], ['REMBES_TALANGAN', 'Rembes talangan', 'Ganti uang pribadi direktur'], ['KAS_AWAL', 'KAS AWAL PERUSAHAAN', 'Saldo pembuka kas'], ['SETORAN_MODAL', 'Setoran modal', 'Tambahan modal'], ['DIVIDEN', 'Dividen / prive', 'Penarikan pemegang saham']];
+const act = x => x.aktif !== 'TIDAK';
+const optList = (arr, val, lab, sel, ph) => (ph ? `<option value="">${esc(ph)}</option>` : '') + arr.map(x => `<option value="${esc(val(x))}" ${String(val(x)) === String(sel) ? 'selected' : ''}>${esc(lab(x))}</option>`).join('');
+const fld = (l, inner, hint, cls) => `<div class="field ${cls || ''}"><label class="f">${l}</label>${inner}${hint ? `<p class="hint">${hint}</p>` : ''}</div>`;
+
+PAGES.catat = async () => {
+  const M = await ensureMaster();
+  if (!S.txType) {
+    return { html: `<div class="page-head"><h2>Apa yang ingin dicatat?</h2></div><div class="tiles">${TILES.map(t => `<button class="tile" data-act="pickType" data-t="${t[0]}"><span class="ti">${ic(JENIS_ICON[t[0]])}</span><span><b>${esc(t[1])}</b><small>${esc(t[2])}</small></span></button>`).join('')}</div>` };
+  }
+  const jenis = S.txType, lbl = (TILES.find(t => t[0] === jenis) || [])[1];
+  if (!M.akunKas.filter(act).length) return { html: `<div class="card"><h3>Rekening perusahaan belum ada</h3><p class="sub">Tambahkan dulu rekening/kas di Data Master.</p><button class="btn primary" data-act="nav" data-page="master">Buka Data Master</button></div>` };
+  S.files = []; S.items = [{ produk_id: '', qty: 1, harga: 0, satuan: '' }];
+  if (jenis === 'PEMBAYARAN_MASUK') S.open = await api('openItems', { tipe: 'PIUTANG' });
+  if (jenis === 'PEMBAYARAN_KELUAR') S.open = await api('openItems', { tipe: 'HUTANG' });
+  if (jenis === 'REMBES_TALANGAN') S.open = await api('openItems', { tipe: 'TALANGAN' });
+  const akun = M.akunKas.filter(act);
+  const akunSel = `<select id="f-akun">${optList(akun, a => a.id, a => a.nama + (a.no_rekening ? ' - ' + a.no_rekening : ''), '')}</select>`;
+  const sumberBlock = `<div class="field"><label class="f">Sumber dana</label><div class="seg"><label><input type="radio" name="sumber" value="KAS" checked> Kas / rekening perusahaan</label><label><input type="radio" name="sumber" value="TALANGAN"> Talangan pribadi direktur</label></div></div><div id="akun-wrap">${fld('Rekening / kas yang dipakai', akunSel)}</div>`;
+  const rekBlock = `<div id="rekwrap"></div>`;
+  let body = '';
+  const common = `<div class="row2">${fld('Tanggal', `<input type="date" id="f-tanggal" value="${todayStr()}" required>`)}${fld('Keterangan (opsional)', '<input id="f-desk" maxlength="200" placeholder="Contoh: pembayaran wifi bulan ini">')}</div>`;
+  if (jenis === 'PENJUALAN') {
+    body = `<div class="card form-card"><h3>Data invoice</h3>${common}
+      <div class="row2">${fld('Client', `<select id="f-pihak" required>${optList(M.client.filter(act), c => c.id, c => c.nama, '', 'Pilih client')}</select>`)}${fld('No. PO client', '<input id="f-po" maxlength="60">')}</div>
+      <div class="row3">${fld('No. BA join survey', '<input id="f-ba" maxlength="60">')}${fld('No. faktur pajak', '<input id="f-faktur" maxlength="60">')}${fld('Tgl kwitansi diterima', '<input type="date" id="f-kwit">', 'Isi jika kwitansi sudah diterima client. Jatuh tempo dihitung dari tanggal ini.')}</div>
+      <div class="row2">${fld('Termin (hari)', `<input type="number" id="f-termin" min="0" max="365" value="${M.pengaturan.termin}">`)}</div></div>
+      <div class="card form-card"><h3>Rincian barang</h3><div id="items"></div><button type="button" class="btn sm" data-act="addItem">${ic('plus')} Tambah baris</button></div>
+      <div class="card form-card"><h3>Pajak</h3><div class="field"><label style="display:flex;gap:10px;align-items:center;cursor:pointer"><input type="checkbox" id="f-ppn" checked> Kenakan PPN keluaran</label></div>
+      <div class="row2">${fld('Potongan pajak oleh pembeli (Rp)', '<input type="number" id="f-pot" min="0" value="0">', 'Mis. PPh 22 yang dipotong client. Mengurangi uang yang diterima.')}${fld('atau isi persen dari DPP (%)', '<input type="number" id="f-potpct" min="0" step="0.01" placeholder="mis. 1.5">')}</div></div>`;
+  } else if (jenis === 'PEMBELIAN') {
+    body = `<div class="card form-card"><h3>Data pembelian</h3>${common}
+      <div class="row2">${fld('Supplier', `<select id="f-pihak" required>${optList(M.supplier.filter(act), c => c.id, c => c.nama + (c.pkp === 'YA' ? ' (PKP)' : ''), '', 'Pilih supplier')}</select>`)}${fld('No. nota / faktur', '<input id="f-nodok" maxlength="60">')}</div></div>
+      <div class="card form-card"><h3>Rincian barang</h3><div id="items"></div><button type="button" class="btn sm" data-act="addItem">${ic('plus')} Tambah baris</button><p class="hint">Satuan boleh diubah per baris, misalnya truk atau ton.</p></div>
+      <div class="card form-card"><h3>Pajak & pembayaran</h3><div class="field"><label style="display:flex;gap:10px;align-items:center;cursor:pointer"><input type="checkbox" id="f-ppn"> Ada PPN masukan (hanya supplier PKP)</label></div>
+      ${fld('No. faktur pajak masukan', '<input id="f-faktur" maxlength="60">')}
+      <div class="field"><label class="f">Cara bayar</label><div class="seg"><label><input type="radio" name="cara" value="HUTANG" checked> Jadi hutang (bayar nanti)</label><label><input type="radio" name="cara" value="LANGSUNG"> Bayar langsung (transfer sekarang)</label></div></div>
+      <div id="langsung" class="hidden">${sumberBlock}${rekBlock}</div></div>`;
+  } else if (jenis === 'BIAYA') {
+    body = `<div class="card form-card"><h3>Data biaya</h3>${common}
+      <div class="row2">${fld('Kategori', `<select id="f-kat" required>${optList(M.kategori.filter(act), k => k.id, k => k.nama, '', 'Pilih kategori')}</select>`)}${fld('Jumlah dibayar (Rp)', '<input type="number" id="f-jml" min="1" required>')}</div>
+      ${fld('Penerima / supplier (opsional)', `<select id="f-pihak">${optList(M.supplier.filter(act), c => c.id, c => c.nama + (c.pkp === 'YA' ? ' (PKP)' : ''), '', 'Tidak ada / tidak terdaftar')}</select>`, 'Pilih jika ingin rekening tujuan dicek terhadap rekening resmi.')}
+      <div class="row2"><div class="field"><label style="display:flex;gap:10px;align-items:center;cursor:pointer"><input type="checkbox" id="f-ppn"> Ada PPN masukan</label></div>${fld('No. faktur pajak masukan', '<input id="f-faktur" maxlength="60">')}</div></div>
+      <div class="card form-card"><h3>Pembayaran</h3>${sumberBlock}${rekBlock}</div>`;
+  } else if (jenis === 'PEMBAYARAN_MASUK') {
+    body = `<div class="card form-card"><h3>Pembayaran dari client</h3>${common}
+      ${fld('Invoice yang dibayar', `<select id="f-ref" required>${S.open.map(o => `<option value="${esc(o.id)}" data-s="${o.sisa}">${esc(o.nomor)} - ${esc(o.pihak)} - sisa ${rp(o.sisa)}</option>`).join('')}</select>`, S.open.length ? '' : 'Tidak ada invoice yang belum lunas.')}
+      <div class="row2">${fld('Jumlah diterima (Rp)', `<input type="number" id="f-jml" min="1" value="${S.open[0] ? S.open[0].sisa : ''}" required>`, 'Boleh dicicil. Tidak boleh melebihi sisa piutang.')}${fld('Masuk ke rekening', akunSel)}</div></div>`;
+  } else if (jenis === 'PEMBAYARAN_KELUAR') {
+    body = `<div class="card form-card"><h3>Pembayaran ke supplier</h3>${common}
+      ${fld('Tagihan yang dibayar', `<select id="f-ref" required>${S.open.map(o => `<option value="${esc(o.id)}" data-s="${o.sisa}" data-p="${esc(o.pihak_id)}">${esc(o.nomor)} - ${esc(o.pihak)} - sisa ${rp(o.sisa)}</option>`).join('')}</select>`, S.open.length ? '' : 'Tidak ada hutang yang belum lunas.')}
+      ${fld('Jumlah dibayar (Rp)', `<input type="number" id="f-jml" min="1" value="${S.open[0] ? S.open[0].sisa : ''}" required>`, 'Boleh dicicil. Tidak boleh melebihi sisa hutang.')}
+      ${sumberBlock}${rekBlock}</div>`;
+  } else if (jenis === 'REMBES_TALANGAN') {
+    body = `<div class="card form-card"><h3>Pilih talangan yang diganti</h3>${common}
+      <div class="checks">${S.open.length ? S.open.map(o => `<label><input type="checkbox" class="tal" value="${esc(o.id)}" data-t="${o.total}"><span style="flex:1"><b>${esc(o.nomor)}</b><br><small style="color:var(--muted)">${tgl(o.tanggal)} - ${esc(o.deskripsi)}</small></span><b>${rp(o.total)}</b></label>`).join('') : '<div class="empty">Tidak ada talangan yang belum direm bes.</div>'}</div>
+      ${fld('Dibayar dari rekening', akunSel)}</div>`;
+  } else {
+    body = `<div class="card form-card"><h3>${esc(lbl)}</h3>${common}<div class="row2">${fld('Jumlah (Rp)', '<input type="number" id="f-jml" min="1" required>')}${fld(jenis === 'DIVIDEN' ? 'Dibayar dari rekening' : 'Masuk ke rekening', akunSel)}</div>${jenis === 'KAS_AWAL' ? '<p class="hint">Dipakai sekali di awal sebagai saldo pembuka kas perusahaan.</p>' : ''}</div>`;
+  }
+  const req = REQ[jenis]; const reqTxt = req.all ? req.all.join(' + ') : req.any.join(' atau ');
+  const bukti = `<div class="card form-card"><h3>Bukti</h3><div class="info-box">${ic('file')}<div>Bukti yang dibutuhkan: <b>${esc(reqTxt)}</b>. Foto dikompres otomatis sebelum disimpan di Drive.</div></div><div id="files"></div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap"><button type="button" class="btn" data-act="pickCam">${ic('camera')} Ambil foto</button><button type="button" class="btn" data-act="pickFile">${ic('upload')} Pilih file</button></div>
+    <input type="file" id="inp-cam" accept="image/*" capture="environment" hidden><input type="file" id="inp-file" accept="image/*,application/pdf" multiple hidden>
+    <div id="alasan-wrap" class="hidden" style="margin-top:14px">${fld('Belum ada bukti? Tulis alasannya', '<textarea id="f-alasan" maxlength="300" placeholder="Contoh: nota menyusul dari toko"></textarea>', 'Transaksi tetap tersimpan tapi ditandai merah dan harus dilengkapi sebelum tutup buku.')}</div></div>`;
+  const hasSum = ['PENJUALAN', 'PEMBELIAN', 'BIAYA'].indexOf(jenis) > -1;
+  const html = `<div class="page-head"><button class="btn ghost sm" data-act="txBack">${ic('back')} Ganti jenis</button><h2>${esc(lbl)}</h2></div>
+    <form id="txf" autocomplete="off">${body}${bukti}${hasSum ? '<div class="card form-card"><h3>Ringkasan</h3><div class="sum" id="sum"></div></div>' : ''}
+    <button class="btn primary" type="submit" style="min-width:220px">${ic('check')} Simpan transaksi</button></form>`;
+  return { html, after: m => initTxForm(m, jenis) };
+};
+
+function ppnOf(dpp) { const p = S.master.pengaturan; const t = Math.round(p.ppn_tarif * 100), n = dpp * t * p.faktor_p, d = 10000 * p.faktor_q; return Math.floor((2 * n + d) / (2 * d)); }
+function itemsDpp() { return S.items.reduce((s, i) => s + Math.round((Number(i.qty) || 0) * (Number(i.harga) || 0)), 0); }
+
+function renderItems() {
+  const M = S.master, el = $('#items'); if (!el) return;
+  const prods = M.produk.filter(act);
+  el.innerHTML = S.items.map((it, i) => `<div class="item-row" data-i="${i}">
+    <div class="full"><select data-k="produk_id">${optList(prods, p => p.id, p => p.nama, it.produk_id, 'Pilih barang')}</select></div>
+    <div><input type="number" data-k="qty" min="0" step="any" value="${it.qty}" aria-label="Qty" placeholder="Qty"></div>
+    <div><input data-k="satuan" value="${esc(it.satuan)}" aria-label="Satuan" placeholder="Satuan" maxlength="12"></div>
+    <div><input type="number" data-k="harga" min="0" value="${it.harga}" aria-label="Harga satuan" placeholder="Harga"></div>
+    <div class="jum" id="jum-${i}">${rp(Math.round((Number(it.qty) || 0) * (Number(it.harga) || 0)))}</div>
+    <button type="button" class="icon-btn" data-act="delItem" data-i="${i}" aria-label="Hapus baris" ${S.items.length < 2 ? 'disabled' : ''}>${ic('x')}</button></div>`).join('');
+}
+function recalc() {
+  const jenis = S.txType, el = $('#sum'); if (!el) return;
+  const ppnOn = $('#f-ppn') && $('#f-ppn').checked;
+  let dpp = jenis === 'BIAYA' ? Math.round(Number($('#f-jml').value) || 0) : itemsDpp();
+  const ppn = ppnOn ? ppnOf(dpp) : 0, tot = dpp + ppn;
+  let h = `<div><span>DPP / subtotal</span><b>${rp(dpp)}</b></div><div><span>PPN (${S.master.pengaturan.ppn_tarif}% x ${S.master.pengaturan.faktor_p}/${S.master.pengaturan.faktor_q})</span><b>${rp(ppn)}</b></div><div><span>Total tagihan</span><b>${rp(tot)}</b></div>`;
+  if (jenis === 'PENJUALAN') { const pot = Math.round(Number($('#f-pot').value) || 0); h += `<div><span>Dipotong pembeli</span><b>- ${rp(pot)}</b></div><div class="grand"><span>Piutang bersih diterima</span><b>${rp(tot - pot)}</b></div>`; }
+  else h = h.replace('<div><span>Total tagihan</span>', '<div class="grand"><span>Total</span>').replace(/<b>([^<]*)<\/b><\/div>$/, '<b>$1</b></div>');
+  el.innerHTML = h;
+}
+function fillRek(pihakId) {
+  const w = $('#rekwrap'); if (!w) return;
+  const rek = pihakId ? S.master.rekSupplier.filter(r => r.supplier_id === pihakId && act(r)) : [];
+  if (rek.length) {
+    w.innerHTML = fld('Rekening tujuan transfer', `<select id="f-rek">${rek.map(r => `<option value="${esc(r.id)}">${esc(r.nama_rekening)} - ${esc(r.bank)} ${esc(r.no_rekening)}</option>`).join('')}<option value="__lain">Rekening lain (perlu alasan)</option></select>`, 'Rekening resmi supplier. Transfer ke rekening lain wajib disertai alasan.') +
+      `<div id="rek-lain" class="hidden">${fld('Rekening lain (nama - bank - nomor)', '<input id="f-rekteks" maxlength="120">')}${fld('Alasan memakai rekening lain', '<input id="f-rekalasan" maxlength="200">')}<div class="warn-box">${ic('alert')}<span>Rekening ini berbeda dari rekening resmi supplier. Pastikan benar.</span></div></div>`;
+  } else {
+    w.innerHTML = fld('Rekening tujuan transfer', '<input id="f-rekteks" maxlength="120" placeholder="Nama - bank - nomor rekening">', pihakId ? 'Supplier ini belum punya rekening resmi. Tambahkan di Data Master > Rekening Supplier.' : '');
+  }
+}
+function renderFiles() {
+  const el = $('#files'); if (!el) return;
+  el.innerHTML = S.files.map((f, i) => `<div class="file-row"><div class="th">${f.dataUrl ? `<img alt="" src="${f.dataUrl}">` : ic('file')}</div><div class="nm"><b>${esc(f.name)}</b><span style="color:var(--muted)">${(f.size / 1024).toFixed(0)} KB</span></div><select data-fi="${i}">${JENIS_LAMP.map(j => `<option ${j === f.jenis ? 'selected' : ''}>${j}</option>`).join('')}</select><button type="button" class="icon-btn" data-act="delFile" data-i="${i}" aria-label="Hapus file">${ic('x')}</button></div>`).join('');
+  const aw = $('#alasan-wrap'); if (aw) aw.classList.toggle('hidden', S.files.length > 0);
+}
+function suggestJenis(jenis, files) {
+  const r = REQ[jenis] || {}, list = r.all || r.any || [], used = files.map(f => f.jenis);
+  return list.find(x => used.indexOf(x) < 0) || 'Lainnya';
+}
+async function addFiles(list) {
+  for (const file of Array.from(list)) {
+    try {
+      if (file.type === 'application/pdf') {
+        if (file.size > 10 * 1024 * 1024) { toast(file.name + ': PDF lebih dari 10 MB.', 'bad'); continue; }
+        S.files.push({ name: file.name, mime: 'application/pdf', b64: await fileToB64(file), size: file.size, jenis: suggestJenis(S.txType, S.files), dataUrl: '' });
+      } else if (file.type.startsWith('image/')) {
+        const c = await compressImage(file, 1600, 'image/jpeg', 0.8);
+        S.files.push({ name: file.name.replace(/\.[^.]+$/, '') + '.jpg', mime: 'image/jpeg', b64: c.b64, size: Math.round(c.b64.length * 0.75), jenis: suggestJenis(S.txType, S.files), dataUrl: c.dataUrl });
+      } else toast(file.name + ': hanya JPG, PNG, atau PDF.', 'bad');
+    } catch (e) { toast(e.message, 'bad'); }
+  }
+  renderFiles();
+}
+function initTxForm(m, jenis) {
+  renderItems(); renderFiles(); recalc();
+  const form = $('#txf');
+  form.addEventListener('input', e => {
+    const t = e.target;
+    if (t.closest('.item-row')) {
+      const i = Number(t.closest('.item-row').dataset.i), k = t.dataset.k, it = S.items[i];
+      if (k === 'produk_id') { it.produk_id = t.value; const p = S.master.produk.find(x => x.id === t.value); if (p) { it.harga = p.harga_standar; it.satuan = p.satuan; } renderItems(); }
+      else { it[k] = t.value; const j = $('#jum-' + i); if (j) j.textContent = rp(Math.round((Number(it.qty) || 0) * (Number(it.harga) || 0))); }
+    }
+    if (t.id === 'f-potpct') { $('#f-pot').value = Math.round(itemsDpp() * (Number(t.value) || 0) / 100); }
+    if (t.id === 'f-ref') onRefChange();
+    if (t.id === 'f-pihak') { if (jenis === 'PEMBELIAN' || jenis === 'BIAYA') fillRek(t.value); }
+    if (t.id === 'f-rek') $('#rek-lain').classList.toggle('hidden', t.value !== '__lain');
+    if (t.name === 'sumber') $('#akun-wrap').classList.toggle('hidden', t.value === 'TALANGAN');
+    if (t.name === 'cara') { $('#langsung').classList.toggle('hidden', t.value !== 'LANGSUNG'); if (t.value === 'LANGSUNG') fillRek($('#f-pihak').value); }
+    if (t.dataset.fi !== undefined) S.files[Number(t.dataset.fi)].jenis = t.value;
+    if (t.classList.contains('tal')) { const sum = $$('.tal:checked').reduce((s, c) => s + Number(c.dataset.t), 0); let b = $('#tal-sum'); if (!b) { b = document.createElement('p'); b.id = 'tal-sum'; b.className = 'hint'; $('.checks').after(b); } b.innerHTML = `Total yang direm bes: <b>${rp(sum)}</b>`; }
+    recalc();
+  });
+  form.addEventListener('change', e => { if (e.target.id === 'inp-cam' || e.target.id === 'inp-file') { addFiles(e.target.files); e.target.value = ''; } });
+  form.addEventListener('submit', e => { e.preventDefault(); submitTx(); });
+  if (jenis === 'PEMBAYARAN_KELUAR') { onRefChange(); }
+  if (jenis === 'BIAYA') fillRek('');
+}
+function onRefChange() {
+  const sel = $('#f-ref'); if (!sel || !sel.selectedOptions[0]) return;
+  const o = sel.selectedOptions[0]; const j = $('#f-jml'); if (j) j.value = o.dataset.s;
+  if (S.txType === 'PEMBAYARAN_KELUAR') fillRek(o.dataset.p);
+}
+
+function collectTx() {
+  const jenis = S.txType, v = id => { const e = $('#' + id); return e ? e.value.trim() : ''; };
+  const p = { jenis, tanggal: v('f-tanggal'), deskripsi: v('f-desk'), alasan_tanpa_bukti: v('f-alasan') };
+  const sumber = $('input[name=sumber]:checked');
+  if (jenis === 'PENJUALAN') {
+    if (!v('f-pihak')) throw new Error('Pilih client.');
+    Object.assign(p, { pihak_id: v('f-pihak'), no_po: v('f-po'), no_ba: v('f-ba'), no_faktur_pajak: v('f-faktur'), tgl_kwitansi_diterima: v('f-kwit'), termin: v('f-termin'), pakai_ppn: $('#f-ppn').checked, potongan_pajak: Number(v('f-pot')) || 0 });
+  }
+  if (jenis === 'PEMBELIAN') {
+    if (!v('f-pihak')) throw new Error('Pilih supplier.');
+    Object.assign(p, { pihak_id: v('f-pihak'), no_dokumen: v('f-nodok'), no_faktur_pajak: v('f-faktur'), pakai_ppn: $('#f-ppn').checked, cara_bayar: $('input[name=cara]:checked').value });
+  }
+  if (jenis === 'PENJUALAN' || jenis === 'PEMBELIAN') {
+    const items = S.items.filter(i => i.produk_id);
+    if (!items.length) throw new Error('Pilih minimal satu barang.');
+    if (items.some(i => !(Number(i.qty) > 0))) throw new Error('Qty harus lebih dari 0.');
+    p.items = items.map(i => ({ produk_id: i.produk_id, qty: Number(i.qty), harga: Math.round(Number(i.harga) || 0), satuan: i.satuan }));
+  }
+  if (jenis === 'BIAYA') {
+    if (!v('f-kat')) throw new Error('Pilih kategori biaya.');
+    Object.assign(p, { kategori_id: v('f-kat'), jumlah: v('f-jml'), pihak_id: v('f-pihak'), pakai_ppn: $('#f-ppn').checked, no_faktur_pajak: v('f-faktur') });
+  }
+  if (jenis === 'PEMBAYARAN_MASUK' || jenis === 'PEMBAYARAN_KELUAR') {
+    if (!v('f-ref')) throw new Error('Pilih tagihan yang dibayar.');
+    Object.assign(p, { ref_id: v('f-ref'), jumlah: v('f-jml') });
+  }
+  if (jenis === 'REMBES_TALANGAN') p.item_ids = $$('.tal:checked').map(c => c.value);
+  if (['KAS_AWAL', 'SETORAN_MODAL', 'DIVIDEN'].indexOf(jenis) > -1) p.jumlah = v('f-jml');
+  if ($('#f-akun')) p.akun_kas_id = v('f-akun');
+  if (['BIAYA', 'PEMBAYARAN_KELUAR'].indexOf(jenis) > -1 || (jenis === 'PEMBELIAN' && p.cara_bayar === 'LANGSUNG')) {
+    p.sumber_dana = sumber ? sumber.value : 'KAS';
+    const rek = $('#f-rek');
+    if (rek && rek.value !== '__lain') p.rekening_tujuan_id = rek.value;
+    else { p.rekening_tujuan_teks = v('f-rekteks'); p.alasan_rekening = v('f-rekalasan'); }
+    if (p.sumber_dana === 'TALANGAN') delete p.akun_kas_id;
+  }
+  if (!S.files.length && p.alasan_tanpa_bukti.length < 5) { $('#alasan-wrap').classList.remove('hidden'); throw new Error('Tambahkan bukti, atau tulis alasan mengapa belum ada bukti.'); }
+  return p;
+}
+async function submitTx() {
+  let p; try { p = collectTx(); } catch (e) { return toast(e.message, 'bad'); }
+  const ok = await confirmBox('Simpan transaksi?', `${esc(JENIS_LABEL[p.jenis])} tanggal ${tgl(p.tanggal)} dengan ${S.files.length} file bukti. Nomor bukti dibuat otomatis dan tidak bisa dihapus (hanya bisa di-void).`, 'Simpan');
+  if (!ok) return;
+  const btn = $('#txf button[type=submit]'); btn.disabled = true;
+  let res;
+  try { res = await api('saveTx', p); } catch (e) { btn.disabled = false; return toast(e.message, 'bad'); }
+  const failed = [];
+  for (let i = 0; i < S.files.length; i++) {
+    const f = S.files[i];
+    try { await api('uploadLampiran', { transaksi_id: res.id, jenis: f.jenis, mime: f.mime, name: f.name, b64: f.b64 }); } catch (e) { failed.push(f.name + ' (' + e.message + ')'); }
+  }
+  S.master = null; await ensureMaster().catch(() => {});
+  const warn = (res.warnings || []).map(w => `<div class="warn-box">${ic('alert')}<span>${esc(w)}</span></div>`).join('');
+  const bad = failed.length ? `<div class="warn-box">${ic('alert')}<span>Bukti gagal diunggah: ${esc(failed.join('; '))}. Unggah ulang lewat Daftar Transaksi.</span></div>` : '';
+  const bg = modal(`<h3>Transaksi tersimpan</h3><p style="color:var(--muted);margin:4px 0 0">Tulis nomor ini di nota fisik sebelum disteples:</p><div class="big-no">${esc(res.nomor_bukti)}</div>${res.nomor_bayar ? `<p style="text-align:center;margin:0">Pembayaran otomatis: <b>${esc(res.nomor_bayar)}</b></p>` : ''}<div class="kv"><div><small>DPP</small><b>${rp(res.dpp)}</b></div><div><small>PPN</small><b>${rp(res.ppn)}</b></div><div><small>Total</small><b>${rp(res.total)}</b></div></div>${warn}${bad}<div class="acts"><button class="btn" data-x="list">Lihat transaksi</button><button class="btn primary" data-x="again">Catat lagi</button></div>`, { noFocus: true });
+  bg.addEventListener('click', e => { const b = e.target.closest('[data-x]'); if (!b) return; closeModal(); if (b.dataset.x === 'again') { S.txType = null; go('catat'); } else { S.txType = null; go('daftar'); } });
+}
+
+/* ------------------------------ DAFTAR TRANSAKSI ------------------------------ */
+PAGES.daftar = async arg => {
+  const f = S.filter = Object.assign({ bulan: '', jenis: '', bukti: '', q: '' }, S.filter || {}, arg ? { bukti: arg } : {});
+  const r = await api('listTx', f);
+  const rows = r.rows.map(t => `<tr class="click" data-act="openTx" data-id="${esc(t.id)}"><td>${tgl(t.tanggal)}</td><td><b>${esc(t.nomor_bukti)}</b><br><small style="color:var(--muted)">${esc(JENIS_LABEL[t.jenis] || t.jenis)}</small></td><td>${esc(t.pihak || t.kategori || '')}<br><small style="color:var(--muted)">${esc(t.deskripsi || '')}</small></td><td class="num">${rp(t.total)}</td><td>${statusChip(t.status_tampil)}</td><td>${buktiChip(t.bukti)}</td></tr>`).join('');
+  const html = `<div class="filters"><div class="field"><label class="f">Bulan</label><input type="month" id="fl-bulan" value="${esc(f.bulan)}"></div>
+    <div class="field"><label class="f">Jenis</label><select id="fl-jenis"><option value="">Semua</option>${Object.keys(JENIS_LABEL).map(j => `<option value="${j}" ${f.jenis === j ? 'selected' : ''}>${JENIS_LABEL[j]}</option>`).join('')}</select></div>
+    <div class="field"><label class="f">Bukti</label><select id="fl-bukti"><option value="">Semua</option><option value="KURANG" ${f.bukti === 'KURANG' ? 'selected' : ''}>Bukti kurang</option><option value="ALASAN" ${f.bukti === 'ALASAN' ? 'selected' : ''}>Ada alasan</option><option value="LENGKAP" ${f.bukti === 'LENGKAP' ? 'selected' : ''}>Lengkap</option></select></div>
+    <div class="field" style="flex:1"><label class="f">Cari</label><input id="fl-q" placeholder="No. bukti, keterangan, nama" value="${esc(f.q)}"></div>
+    <button class="btn primary" data-act="applyFilter">Terapkan</button></div>
+    <p class="hint" style="margin:-4px 0 12px">${r.total} transaksi${r.total > 300 ? ' (300 terbaru ditampilkan)' : ''}</p>
+    ${r.rows.length ? `<div class="tbl-wrap"><table><thead><tr><th>Tanggal</th><th>No. Bukti</th><th>Pihak / Keterangan</th><th class="num">Total</th><th>Status</th><th>Bukti</th></tr></thead><tbody>${rows}</tbody></table></div>` : '<div class="card empty">Tidak ada transaksi yang cocok.</div>'}`;
+  return { html };
+};
+
+async function openTx(id) {
+  let t; try { t = await api('getTx', { id }); } catch (e) { return toast(e.message, 'bad'); }
+  const k = (l, v) => `<div><small>${l}</small><b>${v === '' || v == null ? '-' : v}</b></div>`;
+  const lamp = (t.lampiran || []).concat((t.lampiran_induk || []).map(x => Object.assign({ induk: true }, x)));
+  const html = `<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><h3 style="flex:1">${esc(t.nomor_bukti)}</h3>${statusChip(t.status_tampil)}${buktiChip(t.bukti)}</div>
+  <p style="color:var(--muted);margin:2px 0 0">${esc(JENIS_LABEL[t.jenis] || t.jenis)} - ${tgl(t.tanggal)}</p>
+  <div class="kv">${k('Pihak', esc(t.pihak))}${k('Keterangan', esc(t.deskripsi))}${k('DPP / nilai', rp(t.dpp))}${k('PPN', rp(t.ppn))}${t.potongan_pajak > 0 ? k('Dipotong pembeli', rp(t.potongan_pajak)) : ''}${k('Total', rp(t.total))}${t.sisa != null && (t.jenis === 'PENJUALAN' || t.jenis === 'PEMBELIAN') ? k('Sisa belum dibayar', rp(t.sisa)) : ''}${t.sumber_dana ? k('Sumber dana', t.sumber_dana === 'TALANGAN' ? 'Talangan pribadi' : 'Kas perusahaan') : ''}${t.rekening_tujuan_teks ? k('Rekening tujuan', esc(t.rekening_tujuan_teks)) : ''}${t.alasan_rekening ? k('Alasan rekening lain', esc(t.alasan_rekening)) : ''}${t.no_po ? k('No. PO', esc(t.no_po)) : ''}${t.no_dokumen ? k('No. nota/faktur', esc(t.no_dokumen)) : ''}${t.no_faktur_pajak ? k('No. faktur pajak', esc(t.no_faktur_pajak)) : ''}${t.no_ba ? k('No. BA', esc(t.no_ba)) : ''}${t.jenis === 'PENJUALAN' ? k('Tgl kwitansi', t.tgl_kwitansi_diterima ? tgl(t.tgl_kwitansi_diterima) : 'Belum diisi') + k('Jatuh tempo', t.jatuh_tempo ? tgl(t.jatuh_tempo) : '-') : ''}${t.alasan_tanpa_bukti ? k('Alasan tanpa bukti', esc(t.alasan_tanpa_bukti)) : ''}${t.status === 'VOID' ? k('Alasan void', esc(t.alasan_void)) : ''}</div>
+  ${t.items.length ? `<div class="tbl-wrap" style="margin-bottom:14px"><table><thead><tr><th>Barang</th><th class="num">Qty</th><th class="num">Harga</th><th class="num">Jumlah</th></tr></thead><tbody>${t.items.map(i => `<tr><td>${esc(i.nama_item)}</td><td class="num">${num(i.qty)} ${esc(i.satuan)}</td><td class="num">${rp(i.harga)}</td><td class="num">${rp(i.jumlah)}</td></tr>`).join('')}</tbody></table></div>` : ''}
+  <h4 style="margin:12px 0 8px">Lampiran bukti</h4>
+  ${lamp.length ? lamp.map(l => `<div class="file-row"><div class="th">${ic('file')}</div><div class="nm"><b>${esc(l.jenis)}${l.induk ? ' (dari pembelian)' : ''}</b><span style="color:var(--muted)">${esc(l.nama)}</span></div><button class="btn sm" data-act="viewFile" data-id="${esc(l.id)}">${ic('eye')} Lihat</button></div>`).join('') : '<div class="empty" style="padding:10px">Belum ada lampiran.</div>'}
+  ${t.status === 'AKTIF' ? `<div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:8px"><select id="up-jenis" style="width:auto">${JENIS_LAMP.map(j => `<option>${j}</option>`).join('')}</select><button class="btn sm" data-act="upMore" data-id="${esc(t.id)}">${ic('upload')} Tambah bukti</button><input type="file" id="up-file" accept="image/*,application/pdf" hidden></div>` : ''}
+  ${t.pembayaran.length ? `<h4 style="margin:16px 0 8px">Pembayaran terkait</h4>${t.pembayaran.map(x => `<div class="li click" data-act="openTx" data-id="${esc(x.id)}"><div class="m"><b>${esc(x.nomor_bukti)} ${x.status === 'VOID' ? chip('Void') : ''}</b><small>${tgl(x.tanggal)}</small></div><div class="r">${rp(x.total)}</div></div>`).join('')}` : ''}
+  <details style="margin-top:14px"><summary style="cursor:pointer;font-weight:600">Jurnal otomatis (${t.jurnal.length} baris)</summary><div class="tbl-wrap" style="margin-top:8px"><table><thead><tr><th>Akun</th><th>Keterangan</th><th class="num">Debit</th><th class="num">Kredit</th></tr></thead><tbody>${t.jurnal.map(j => `<tr><td>${esc(j.kode_akun)}</td><td>${esc(j.keterangan)}</td><td class="num">${j.debit ? num(j.debit) : ''}</td><td class="num">${j.kredit ? num(j.kredit) : ''}</td></tr>`).join('')}</tbody></table></div></details>
+  <div class="acts">${t.status === 'AKTIF' && t.jenis === 'PENJUALAN' ? `<button class="btn" data-act="kwitansi" data-id="${esc(t.id)}" data-t="${t.termin}">${ic('cal')} Isi tgl kwitansi</button>` : ''}${t.status === 'AKTIF' ? `<button class="btn danger" data-act="voidTx" data-id="${esc(t.id)}">Void</button>` : ''}<button class="btn primary" data-act="closeModal">Tutup</button></div>`;
+  modal(html, { wide: true, noFocus: true });
+}
+async function viewFile(id) {
+  let f; try { f = await api('getFile', { id }); } catch (e) { return toast(e.message, 'bad'); }
+  const src = `data:${f.mime};base64,${f.b64}`;
+  const body = f.mime === 'application/pdf' ? `<iframe title="PDF" src="${src}" style="width:100%;height:70vh;border:0;border-radius:12px"></iframe><p class="hint">Jika PDF tidak tampil, <a href="${src}" download="${esc(f.name)}">unduh file ini</a>.</p>` : `<img alt="Bukti" src="${src}" style="width:100%;border-radius:12px">`;
+  modal(`<h3 style="font-size:16px;word-break:break-all">${esc(f.name)}</h3>${body}<div class="acts"><button class="btn primary" data-act="closeModal">Tutup</button></div>`, { wide: true, noFocus: true });
+}
+async function upMore(id) {
+  const inp = $('#up-file'); inp.onchange = async () => {
+    const file = inp.files[0]; if (!file) return;
+    try {
+      let b64, mime, name = file.name;
+      if (file.type === 'application/pdf') { if (file.size > 10485760) throw new Error('PDF lebih dari 10 MB.'); b64 = await fileToB64(file); mime = file.type; }
+      else if (file.type.startsWith('image/')) { const c = await compressImage(file, 1600, 'image/jpeg', 0.8); b64 = c.b64; mime = 'image/jpeg'; name = name.replace(/\.[^.]+$/, '') + '.jpg'; }
+      else throw new Error('Hanya JPG, PNG, atau PDF.');
+      await api('uploadLampiran', { transaksi_id: id, jenis: $('#up-jenis').value, mime, name, b64 });
+      toast('Bukti ditambahkan.'); openTx(id);
+    } catch (e) { toast(e.message, 'bad'); }
+  };
+  inp.click();
+}
+async function setKwitansi(id, termin) {
+  const bg = modal(`<h3>Tanggal kwitansi diterima</h3><p style="color:var(--muted);margin:4px 0 14px">Jatuh tempo dihitung dari tanggal kwitansi diterima lengkap oleh client.</p><div class="row2">${fld('Tanggal diterima', `<input type="date" id="kw-t" value="${todayStr()}">`)}${fld('Termin (hari)', `<input type="number" id="kw-d" value="${termin}" min="0" max="365">`)}</div><div class="acts"><button class="btn" data-x="no">Batal</button><button class="btn primary" data-x="ok">Simpan</button></div>`);
+  bg.addEventListener('click', async e => {
+    const b = e.target.closest('[data-x]'); if (!b) return;
+    if (b.dataset.x === 'no') return closeModal();
+    try { const r = await api('setKwitansi', { id, tanggal: $('#kw-t').value, termin: $('#kw-d').value }); toast('Jatuh tempo: ' + tgl(r.jatuh_tempo)); closeModal(); if (S.page === 'piutang') go('piutang'); else openTx(id); } catch (x) { toast(x.message, 'bad'); }
+  });
+}
+async function voidTx(id) {
+  const alasan = await promptBox('Void transaksi', 'Alasan void (wajib, min 5 huruf)', 'Void transaksi');
+  if (alasan === null) return;
+  try { await api('voidTx', { id, alasan }); toast('Transaksi di-void.'); closeModal(); S.master = null; go(S.page === 'dashboard' ? 'dashboard' : 'daftar'); } catch (e) { toast(e.message, 'bad'); }
+}
+
+/* ------------------------------ LAPORAN ------------------------------ */
+const REP_CFG = { bukukas: { bulan: 1, akun: 1 }, piutang: { semua: 1 }, hutang: { semua: 1 }, biaya: { bulan: 1 }, labarugi: { periode: 1 }, pajak: { bulan: 1 } };
+function repParams() {
+  const cfg = REP_CFG[S.page] || {}, p = { tipe: S.page };
+  if (cfg.bulan) p.bulan = $('#rp-bulan').value;
+  if (cfg.akun) p.akun_kas_id = $('#rp-akun').value;
+  if (cfg.semua) p.semua = $('#rp-semua').checked;
+  if (cfg.periode) p.periode = $('#rp-mode').value === 'tahun' ? $('#rp-tahun').value : $('#rp-bulan').value;
+  return p;
+}
+function cellHtml(c, v, row) {
+  if (c.tipe === 'angka') return `<td class="num">${num(v)}</td>`;
+  if (c.tipe === 'tanggal') return `<td>${v ? tgl(v) : ''}</td>`;
+  if (c.tipe === 'link') return `<td>${v && v.url ? `<a href="${esc(v.url)}" target="_blank" rel="noopener" style="color:var(--p);font-weight:600">Lihat</a>` : ''}</td>`;
+  return `<td>${esc(v == null ? '' : v)}</td>`;
+}
+function repTable(rep, extra) {
+  const head = rep.kolom.map(c => `<th class="${c.tipe === 'angka' ? 'num' : ''}">${esc(c.label)}</th>`).join('') + (extra ? '<th></th>' : '');
+  const body = rep.baris.map(r => `<tr class="${r.b ? 'b' : ''}">${rep.kolom.map(c => cellHtml(c, r[c.k], r)).join('')}${extra ? `<td>${extra(r)}</td>` : ''}</tr>`).join('');
+  let tot = '';
+  if (rep.baris.length && Object.keys(rep.total || {}).length) tot = `<tr class="total">${rep.kolom.map((c, i) => rep.total[c.k] === 'sum' ? `<td class="num">${num(rep.baris.reduce((s, r) => s + (Number(r[c.k]) || 0), 0))}</td>` : `<td>${i === 0 ? 'TOTAL' : ''}</td>`).join('')}${extra ? '<td></td>' : ''}</tr>`;
+  return rep.baris.length ? `<div class="tbl-wrap"><table><thead><tr>${head}</tr></thead><tbody>${body}${tot}</tbody></table></div>` : '<div class="card empty">Tidak ada data pada periode ini.</div>';
+}
+function makeReportPage(tipe) {
+  return async () => {
+    const cfg = REP_CFG[tipe], M = await ensureMaster();
+    S.repState = S.repState || {};
+    const st = S.repState[tipe] = Object.assign({ bulan: nowMonth(), mode: 'bulan', tahun: todayStr().slice(0, 4) }, S.repState[tipe] || {});
+    let flt = '';
+    if (cfg.bulan || cfg.periode) {
+      if (cfg.periode) flt += `<div class="field"><label class="f">Periode</label><select id="rp-mode"><option value="bulan" ${st.mode === 'bulan' ? 'selected' : ''}>Per bulan</option><option value="tahun" ${st.mode === 'tahun' ? 'selected' : ''}>Per tahun</option></select></div>`;
+      flt += `<div class="field ${cfg.periode && st.mode === 'tahun' ? 'hidden' : ''}" id="w-bulan"><label class="f">Bulan</label><input type="month" id="rp-bulan" value="${st.bulan}"></div>`;
+      if (cfg.periode) flt += `<div class="field ${st.mode === 'tahun' ? '' : 'hidden'}" id="w-tahun"><label class="f">Tahun</label><input type="number" id="rp-tahun" value="${st.tahun}" min="2020" max="2100"></div>`;
+    }
+    if (cfg.akun) flt += `<div class="field"><label class="f">Rekening/kas</label><select id="rp-akun"><option value="">Semua</option>${optList(M.akunKas.filter(act), a => a.id, a => a.nama, '')}</select></div>`;
+    if (cfg.semua) flt += `<div class="field" style="align-self:center"><label style="display:flex;gap:10px;align-items:center;cursor:pointer;margin-top:18px"><input type="checkbox" id="rp-semua"> Tampilkan yang sudah lunas</label></div>`;
+    const html = `<div class="filters">${flt}<button class="btn primary" data-act="loadRep">Tampilkan</button><button class="btn" data-act="exportRep">${ic('download')} Unduh Excel</button></div><div id="rep-out">${skeleton()}</div>`;
+    return { html, after: () => { loadRep(); } };
+  };
+}
+Object.keys(REP_CFG).forEach(k => { PAGES[k] = makeReportPage(k); });
+async function loadRep() {
+  const out = $('#rep-out'); if (!out) return;
+  let p; try { p = repParams(); } catch (e) { return; }
+  const st = S.repState[S.page]; if (p.bulan) st.bulan = p.bulan; if ($('#rp-mode')) st.mode = $('#rp-mode').value; if ($('#rp-tahun')) st.tahun = $('#rp-tahun').value;
+  out.innerHTML = skeleton();
+  try {
+    const rep = S.rep = await api('getReport', p);
+    const pills = (rep.ringkasan || []).length ? `<div class="pills">${rep.ringkasan.map(x => `<div class="pill"><span>${esc(x.label)}</span><b>${typeof x.nilai === 'number' ? rp(x.nilai) : esc(x.nilai)}</b></div>`).join('')}</div>` : '';
+    const extra = S.page === 'piutang' ? r => (r.sisa > 0 ? `<button class="btn sm" data-act="kwitansi" data-id="${esc(r._id)}" data-t="30">${ic('cal')} Kwitansi</button>` : '') : null;
+    out.innerHTML = pills + repTable(rep, extra) + (rep.catatan ? `<p class="hint" style="margin-top:12px">${esc(rep.catatan)}</p>` : '');
+  } catch (e) { out.innerHTML = `<div class="card"><h3>Laporan gagal dimuat</h3><p class="sub">${esc(e.message)}</p></div>`; }
+}
+async function exportRep() {
+  const btn = $('[data-act=exportRep]'); setBusy(btn, true, 'Menyiapkan Excel...');
+  try { const p = repParams(); const r = await api('exportReport', p); downloadB64(r.b64, r.name); toast('File Excel diunduh.'); } catch (e) { toast(e.message, 'bad'); } finally { setBusy(btn, false); }
+}
+
+/* ------------------------------ TUTUP BUKU ------------------------------ */
+PAGES.tutup = async () => {
+  S.tutupBulan = S.tutupBulan || nowMonth();
+  const d = await api('tutupBukuData', { bulan: S.tutupBulan });
+  const lock = d.status === 'TERKUNCI', c = d.checklist;
+  const ck = (ok, t) => `<div class="pill" style="display:flex;gap:10px;align-items:center"><span class="chip ${ok ? 'ok' : 'bad'}">${ok ? 'OK' : 'Cek'}</span><span style="color:var(--text);font-size:14px">${t}</span></div>`;
+  const tr = d.rows.map(r => `<tr><td>${tgl(r.tanggal)}</td><td><b>${esc(r.nomor_bukti)}</b><br><small style="color:var(--muted)">${esc(JENIS_LABEL[r.jenis] || r.jenis)}</small></td><td>${esc(r.pihak || r.deskripsi || '')}</td><td class="num">${rp(r.total)}</td><td>${buktiChip(r.bukti)}</td><td><div class="seg" style="gap:6px;flex-wrap:nowrap"><button class="btn sm ${r.tanda === 'COCOK' ? 'primary' : ''}" data-act="tanda" data-id="${esc(r.id)}" data-v="COCOK" ${lock ? 'disabled' : ''}>Cocok</button><button class="btn sm ${r.tanda === 'SELISIH' ? 'danger' : ''}" data-act="tanda" data-id="${esc(r.id)}" data-v="SELISIH" ${lock ? 'disabled' : ''} style="${r.tanda === 'SELISIH' ? 'background:color-mix(in srgb,var(--bad) 12%,var(--card))' : ''}">Selisih</button></div></td><td style="min-width:200px"><input data-note="${esc(r.id)}" data-tanda="${esc(r.tanda)}" value="${esc(r.catatan)}" placeholder="Catatan" ${lock ? 'disabled' : ''}></td></tr>`).join('');
+  const totRows = d.totals.map(t => `<tr><td>${esc(t.kategori)}</td><td class="num">${num(t.sistem)}</td><td style="min-width:200px"><input type="number" data-tot="${esc(t.kategori)}" value="${t.excel == null ? '' : t.excel}" placeholder="Total di Excel" ${lock ? 'disabled' : ''}></td><td class="num" style="color:${t.selisih ? 'var(--bad)' : 'var(--ok)'}">${t.selisih == null ? '-' : num(t.selisih)}</td></tr>`).join('');
+  const kasRow = (lab, key, sis, ex, sel) => `<tr><td>${lab}</td><td class="num">${num(sis)}</td><td style="min-width:200px"><input type="number" data-tot="${key}" value="${ex == null ? '' : ex}" placeholder="Total di Excel" ${lock ? 'disabled' : ''}></td><td class="num" style="color:${sel ? 'var(--bad)' : 'var(--ok)'}">${sel == null ? '-' : num(sel)}</td></tr>`;
+  const html = `<div class="filters"><div class="field"><label class="f">Bulan yang dicek</label><input type="month" id="tb-bulan" value="${S.tutupBulan}"></div><button class="btn primary" data-act="loadTutup">Tampilkan</button><button class="btn" data-act="exportTutup">${ic('download')} Unduh Excel</button>
+    <span style="margin-left:auto">${lock ? chip('Terkunci', 'ok') : chip('Terbuka', 'info')}</span></div>
+    <div class="info-box">${ic('file')}<div>Cetak Excel bawahan sekitar 5 hari sebelum akhir bulan, lalu cocokkan baris demi baris di bawah ini. Tandai <b>Cocok</b> atau <b>Selisih</b> (selisih wajib diberi catatan), dan masukkan total dari Excel bawahan untuk melihat selisihnya.</div></div>
+    <div class="pills">${ck(c.tanpa_bukti === 0, c.tanpa_bukti ? c.tanpa_bukti + ' transaksi belum punya bukti lengkap' : 'Semua transaksi punya bukti')}${ck(c.selisih_tanpa_catatan === 0, c.selisih_tanpa_catatan ? c.selisih_tanpa_catatan + ' baris Selisih belum dicatat' : 'Semua selisih sudah dicatat')}${ck(c.talangan_belum === 0, c.talangan_belum ? c.talangan_belum + ' talangan belum direm bes (peringatan)' : 'Tidak ada talangan tertunda')}${ck(c.invoice_telat === 0, c.invoice_telat ? c.invoice_telat + ' invoice lewat jatuh tempo' : 'Tidak ada invoice telat')}${ck(c.belum_diperiksa === 0, c.belum_diperiksa ? c.belum_diperiksa + ' baris belum dicek' : 'Semua baris sudah dicek')}</div>
+    <div class="card" style="margin-bottom:20px"><h3>Pembanding dengan Excel bawahan</h3><p class="sub">Isi total dari kertas Excel bawahan.</p><div class="tbl-wrap"><table><thead><tr><th>Pos</th><th class="num">Menurut pembukuan</th><th>Menurut Excel</th><th class="num">Selisih</th></tr></thead><tbody>${kasRow('Total uang masuk', '__KAS_MASUK__', d.kas.masuk, d.kas.excel_masuk, d.kas.selisih_masuk)}${kasRow('Total uang keluar', '__KAS_KELUAR__', d.kas.keluar, d.kas.excel_keluar, d.kas.selisih_keluar)}${totRows}</tbody></table></div></div>
+    ${d.rows.length ? `<div class="tbl-wrap"><table><thead><tr><th>Tanggal</th><th>No. Bukti</th><th>Pihak</th><th class="num">Nilai</th><th>Bukti</th><th>Cek Excel</th><th>Catatan</th></tr></thead><tbody>${tr}</tbody></table></div>` : '<div class="card empty">Belum ada transaksi pada bulan ini.</div>'}
+    <div style="display:flex;gap:12px;margin-top:20px;flex-wrap:wrap">${lock ? `<button class="btn danger" data-act="bukaBuku">Buka kembali bulan ini</button>${d.alasan_buka ? `<span class="hint" style="align-self:center">Alasan terakhir dibuka: ${esc(d.alasan_buka)}</span>` : ''}` : `<button class="btn primary" data-act="tutupBuku">${ic('lock')} Tutup buku bulan ini</button>`}</div>`;
+  return { html };
+};
+
+/* ------------------------------ DATA MASTER & PENGATURAN PAJAK ------------------------------ */
+const MFIELDS = {
+  Client: [['nama', 'Nama client', 'text', 1], ['alamat', 'Alamat', 'text'], ['kontak', 'Kontak / telepon', 'text'], ['npwp', 'NPWP', 'text'], ['termin_default', 'Termin bayar (hari)', 'number'], ['aktif', 'Aktif', 'yn']],
+  Supplier: [['nama', 'Nama supplier', 'text', 1], ['alamat', 'Alamat', 'text'], ['kontak', 'Kontak / telepon', 'text'], ['npwp', 'NPWP', 'text'], ['pkp', 'Supplier berstatus PKP', 'yn'], ['aktif', 'Aktif', 'yn']],
+  RekeningSupplier: [['supplier_id', 'Supplier', 'supplier', 1], ['nama_rekening', 'Nama pemilik rekening', 'text', 1], ['bank', 'Bank', 'text', 1], ['no_rekening', 'Nomor rekening', 'text', 1], ['aktif', 'Aktif', 'yn']],
+  Produk: [['nama', 'Nama produk', 'text', 1], ['satuan', 'Satuan (m3, ton, truk)', 'text', 1], ['harga_standar', 'Harga jual standar (Rp)', 'number'], ['aktif', 'Aktif', 'yn']],
+  AkunKas: [['nama', 'Nama rekening/kas', 'text', 1], ['jenis', 'Jenis', 'select:Bank,Tunai', 1], ['no_rekening', 'Nomor rekening', 'text'], ['aktif', 'Aktif', 'yn']],
+  Kategori: [['nama', 'Nama kategori', 'text', 1], ['jenis', 'Jenis', 'select:BIAYA_LANGSUNG,OPERASIONAL,PAJAK,LAIN', 1], ['aktif', 'Aktif', 'yn']]
+};
+const MTABS = [['Client', 'Client', 'client'], ['Supplier', 'Supplier', 'supplier'], ['RekeningSupplier', 'Rekening Supplier', 'rekSupplier'], ['Produk', 'Produk', 'produk'], ['AkunKas', 'Rekening Perusahaan', 'akunKas'], ['Kategori', 'Kategori Biaya', 'kategori']];
+PAGES.master = async () => {
+  const M = await ensureMaster(true);
+  const tab = S.mtab = S.mtab || 'Client';
+  const key = (MTABS.find(t => t[0] === tab) || [])[2];
+  const list = M[key] || [];
+  const sup = id => (M.supplier.find(s => s.id === id) || {}).nama || '';
+  const cols = MFIELDS[tab].filter(f => f[0] !== 'aktif');
+  const rows = list.map(r => `<tr><td>${cols.slice(0, 1).map(f => esc(f[0] === 'supplier_id' ? sup(r[f[0]]) : r[f[0]])).join('')}</td>${cols.slice(1).map(f => `<td class="${f[2] === 'number' ? 'num' : ''}">${f[2] === 'yn' ? (r[f[0]] === 'YA' ? chip('Ya', 'ok') : chip('Tidak')) : f[2] === 'supplier' ? esc(sup(r[f[0]])) : f[2] === 'number' ? num(r[f[0]]) : esc(r[f[0]] || '')}</td>`).join('')}<td>${act(r) ? chip('Aktif', 'ok') : chip('Nonaktif')}</td><td><button class="btn sm" data-act="editMaster" data-id="${esc(r.id)}">${ic('edit')} Ubah</button></td></tr>`).join('');
+  const html = `<div class="pbk-tabs">${MTABS.map(t => `<button class="pbk-tab ${t[0] === tab ? 'active' : ''}" data-act="mtab" data-t="${t[0]}">${t[1]}</button>`).join('')}</div>
+    <div class="page-head"><h3 style="flex:1">${(MTABS.find(t => t[0] === tab) || [])[1]}</h3><button class="btn primary" data-act="addMaster">${ic('plus')} Tambah</button></div>
+    ${list.length ? `<div class="tbl-wrap"><table><thead><tr>${cols.map(f => `<th class="${f[2] === 'number' ? 'num' : ''}">${esc(f[1])}</th>`).join('')}<th>Status</th><th></th></tr></thead><tbody>${rows}</tbody></table></div>` : '<div class="card empty">Belum ada data. Klik Tambah.</div>'}
+    <p class="hint" style="margin-top:12px">Data master tidak dihapus. Untuk berhenti memakai, ubah statusnya menjadi tidak aktif.</p>`;
+  return { html };
+};
+function masterForm(entity, row) {
+  const M = S.master; row = row || {};
+  const fields = MFIELDS[entity].map(f => {
+    const [k, l, t, req] = f; const v = row[k] !== undefined ? row[k] : (k === 'aktif' ? 'YA' : k === 'pkp' ? 'TIDAK' : k === 'termin_default' ? M.pengaturan.termin : '');
+    let inp;
+    if (t === 'yn') inp = `<select data-k="${k}"><option value="YA" ${v === 'YA' ? 'selected' : ''}>Ya</option><option value="TIDAK" ${v === 'TIDAK' ? 'selected' : ''}>Tidak</option></select>`;
+    else if (t === 'supplier') inp = `<select data-k="${k}">${optList(M.supplier.filter(act), s => s.id, s => s.nama, v, 'Pilih supplier')}</select>`;
+    else if (t.indexOf('select:') === 0) inp = `<select data-k="${k}">${t.slice(7).split(',').map(o => `<option ${o === v ? 'selected' : ''}>${o}</option>`).join('')}</select>`;
+    else inp = `<input data-k="${k}" type="${t === 'number' ? 'number' : 'text'}" value="${esc(v)}" ${t === 'number' ? 'min="0"' : ''} maxlength="150">`;
+    return fld(esc(l) + (req ? ' *' : ''), inp);
+  }).join('');
+  const bg = modal(`<h3>${row.id ? 'Ubah' : 'Tambah'} data</h3><div style="margin-top:14px">${fields}</div><div class="acts"><button class="btn" data-x="no">Batal</button><button class="btn primary" data-x="ok">Simpan</button></div>`);
+  bg.addEventListener('click', async e => {
+    const b = e.target.closest('[data-x]'); if (!b) return;
+    if (b.dataset.x === 'no') return closeModal();
+    const data = {}; $$('[data-k]', bg).forEach(i => { data[i.dataset.k] = i.value; }); if (row.id) data.id = row.id;
+    try { await api('saveMaster', { entity, row: data }); toast('Tersimpan.'); closeModal(); go('master'); } catch (x) { toast(x.message, 'bad'); }
+  });
+}
+PAGES.pajakset = async () => {
+  const M = await ensureMaster(true), p = M.pengaturan;
+  const html = `<div class="card" style="max-width:720px"><h3>Tarif pajak & termin</h3><p class="sub">Semua perhitungan PPN dan estimasi PPh membaca angka di sini. Ubah hanya jika aturan berubah atau sesuai arahan KPP Pratama.</p>
+    <form id="pj-form"><div class="row3">${fld('Tarif PPN nominal (%)', `<input type="number" id="pj-ppn" step="0.01" min="0" max="100" value="${p.ppn_tarif}">`)}${fld('Faktor DPP: pembilang', `<input type="number" id="pj-fp" min="1" value="${p.faktor_p}">`)}${fld('Faktor DPP: penyebut', `<input type="number" id="pj-fq" min="1" value="${p.faktor_q}">`)}</div>
+    <p class="hint" style="margin:-6px 0 14px">PPN = DPP x tarif x pembilang/penyebut. Default 12% x 11/12 = 11% efektif.</p>
+    <div class="row2">${fld('Mode PPh badan', `<select id="pj-mode"><option value="FINAL" ${p.pph_mode === 'FINAL' ? 'selected' : ''}>PPh Final (% dari omzet)</option><option value="NORMAL" ${p.pph_mode === 'NORMAL' ? 'selected' : ''}>PPh Normal (% dari laba)</option></select>`)}${fld('Tarif PPh (%)', `<input type="number" id="pj-pph" step="0.01" min="0" max="100" value="${p.pph_tarif}">`)}</div>
+    <div class="row2">${fld('Termin bayar default (hari)', `<input type="number" id="pj-termin" min="0" max="365" value="${p.termin}">`)}${fld('Tahun buku', `<input type="number" id="pj-tahun" min="2020" max="2100" value="${p.tahun}">`)}</div>
+    <div class="info-box">${ic('alert')}<div>Angka PPh di aplikasi adalah <b>estimasi</b>. Angka resmi mengikuti perhitungan KPP Pratama.</div></div>
+    <button class="btn primary" type="submit">Simpan pengaturan</button></form></div>`;
+  return { html, after: () => { $('#pj-form').addEventListener('submit', async e => { e.preventDefault(); try { await api('saveTaxSettings', { ppn_tarif_nominal: $('#pj-ppn').value, ppn_faktor_dpp_pembilang: $('#pj-fp').value, ppn_faktor_dpp_penyebut: $('#pj-fq').value, pph_mode: $('#pj-mode').value, pph_tarif: $('#pj-pph').value, termin_default: $('#pj-termin').value, tahun_buku: $('#pj-tahun').value }); S.master = null; toast('Pengaturan pajak disimpan.'); } catch (x) { toast(x.message, 'bad'); } }); } };
+};
+
+/* ------------------------------ ADMIN ------------------------------ */
+PAGES.pengguna = async () => {
+  const us = await api('listUsers');
+  const rows = us.map(u => `<tr><td><b>${esc(u.nama)}</b><br><small style="color:var(--muted)">${esc(u.username)}</small></td><td>${esc(u.peran)}</td><td>${u.aktif === 'YA' ? chip('Aktif', 'ok') : chip('Nonaktif')}${u.wajib_ganti === 'YA' ? ' ' + chip('Wajib ganti password', 'warn') : ''}</td><td style="white-space:nowrap"><button class="btn sm" data-act="resetPw" data-id="${esc(u.id)}">Reset password</button> <button class="btn sm" data-act="toggleUser" data-id="${esc(u.id)}" data-v="${u.aktif === 'YA' ? '0' : '1'}">${u.aktif === 'YA' ? 'Nonaktifkan' : 'Aktifkan'}</button></td></tr>`).join('');
+  return { html: `<div class="page-head"><h3 style="flex:1">Daftar pengguna</h3><button class="btn primary" data-act="addUser">${ic('plus')} Tambah pengguna</button></div><div class="tbl-wrap"><table><thead><tr><th>Nama</th><th>Peran</th><th>Status</th><th></th></tr></thead><tbody>${rows}</tbody></table></div><p class="hint" style="margin-top:12px">Hanya boleh ada satu akun Direktur aktif. Admin tidak dapat melihat data keuangan.</p>` };
+};
+PAGES.tampilan = async () => {
+  const pub = S.pub, isAdmin = S.user.peran === 'ADMIN';
+  const html = `<div class="grid" style="grid-template-columns:minmax(0,1fr)">
+  <div class="card"><h3>Tema warna</h3><p class="sub">Pilih satu dari 5 tema. Latar dan warna aksen ikut berubah, berlaku untuk semua halaman dan semua pengguna.</p><div class="swatches">${TEMAS.map(t => `<button class="swatch ${pub.tema === t[0] ? 'active' : ''}" data-act="setTema" data-v="${t[0]}"><i style="background:${t[2]}"></i>${t[1]}</button>`).join('')}</div></div>
+  <div class="card"><h3>Mode tampilan</h3><p class="sub">Terang untuk siang hari, gelap untuk mata yang lelah.</p><div class="seg"><button class="btn ${pub.mode !== 'gelap' ? 'primary' : ''}" data-act="setMode" data-v="terang" style="flex:1">${ic('sun')} Terang</button><button class="btn ${pub.mode === 'gelap' ? 'primary' : ''}" data-act="setMode" data-v="gelap" style="flex:1">${ic('moon')} Gelap</button></div></div>
+  <div class="card"><h3>Tema otomatis</h3><p class="sub">Warna berganti sendiri secara berkala, bergilir di antara 5 tema.</p><div class="seg"><button class="btn ${!pub.tema_otomatis ? 'primary' : ''}" data-act="setAutoTema" data-v="0" style="flex:1">Mati</button><button class="btn ${pub.tema_otomatis ? 'primary' : ''}" data-act="setAutoTema" data-v="1" style="flex:1">Aktif</button></div>
+    <div class="field" style="margin-top:14px"><label class="f">Ganti tiap berapa detik</label><input type="number" id="auto-detik" min="5" max="120" value="${pub.tema_interval || 15}" ${!pub.tema_otomatis ? 'disabled' : ''}><p class="hint">Antara 5 dan 120 detik.</p></div>
+    <button class="btn sm" id="auto-save" ${!pub.tema_otomatis ? 'disabled' : ''}>Simpan durasi</button></div>
+  </div>
+  ${isAdmin ? `<div class="card" style="margin-bottom:20px"><h3>Logo perusahaan</h3><p class="sub">Tampil di halaman login, menu samping, dan header file Excel. PNG atau JPG, maksimal 1 MB.</p>
+    <div class="logo-up"><div class="logo" id="lg-prev">BR</div><div><button class="btn" data-act="pickLogo">${ic('upload')} Unggah logo</button><input type="file" id="inp-logo" accept="image/png,image/jpeg" hidden><p class="hint">Disarankan persegi atau lebar, latar putih/transparan.</p></div></div></div>
+  <div class="card" style="max-width:720px"><h3>Identitas & alamat</h3><p class="sub">Tampil di header laporan Excel.</p>
+    <form id="id-form">${fld('Nama perusahaan', `<input id="id-nama" required maxlength="100">`)}${fld('Alamat', `<textarea id="id-alamat" maxlength="250"></textarea>`)}<div class="row2">${fld('Kota / provinsi', `<input id="id-kota" maxlength="80">`)}${fld('Telepon', `<input id="id-telp" maxlength="40">`)}</div><button class="btn primary" type="submit">Simpan identitas</button></form></div>` : `<p class="hint">Logo dan identitas perusahaan hanya bisa diubah oleh Admin.</p>`}`;
+  return { html, after: async () => {
+    const sv = $('#auto-save'); if (sv) sv.addEventListener('click', async () => {
+      try { await api('saveSettings', { tema_interval_detik: $('#auto-detik').value }); S.pub.tema_interval = Number($('#auto-detik').value); syncAutoTheme(); toast('Durasi tema otomatis disimpan.'); } catch (x) { toast(x.message, 'bad'); }
+    });
+    if (!isAdmin) return;
+    brandLogo($('#lg-prev'));
+    $('#id-nama').value = pub.nama_perusahaan || ''; $('#id-alamat').value = pub.alamat || ''; $('#id-kota').value = pub.kota || ''; $('#id-telp').value = pub.telepon || '';
+    $('#id-form').addEventListener('submit', async e => { e.preventDefault(); try { const d = { nama_perusahaan: $('#id-nama').value, alamat: $('#id-alamat').value, kota: $('#id-kota').value, telepon: $('#id-telp').value }; await api('saveSettings', d); Object.assign(S.pub, d); applyBrand(); toast('Identitas disimpan.'); } catch (x) { toast(x.message, 'bad'); } });
+  } };
+};
+PAGES.sistem = async () => {
+  const i = await api('sysInfo');
+  return { html: `<div class="card" style="max-width:640px"><h3>Info sistem</h3><div class="kv"><div><small>Versi aplikasi</small><b>${esc(i.versi)}</b></div><div><small>Zona waktu</small><b>${esc(i.zona_waktu)}</b></div><div><small>Pengguna terdaftar</small><b>${i.jumlah_pengguna} (aktif ${i.pengguna_aktif})</b></div></div><p class="hint">Database dan bukti tersimpan di Google Drive pemilik skrip, di folder "PT BRA - Pembukuan". Data keuangan tidak ditampilkan pada panel admin.</p><a class="btn" style="margin-top:14px" href="${esc(i.db_url)}" target="_blank" rel="noopener">Buka folder database di Drive</a></div>` };
+};
+
+function gantiPass(force) {
+  const bg = modal(`<h3>${force ? 'Buat password baru' : 'Ganti password'}</h3><p style="color:var(--muted);margin:4px 0 14px">${force ? 'Demi keamanan, ganti password sementara Anda sekarang.' : ''}Minimal 8 karakter, berisi huruf dan angka.</p>${fld('Password lama', '<input type="password" id="pw-l" autocomplete="current-password">')}${fld('Password baru', '<input type="password" id="pw-b" autocomplete="new-password">')}${fld('Ulangi password baru', '<input type="password" id="pw-u" autocomplete="new-password">')}<div class="acts">${force ? '' : '<button class="btn" data-x="no">Batal</button>'}<button class="btn primary" data-x="ok">Simpan password</button></div>`, { force: !!force });
+  bg.addEventListener('click', async e => {
+    const b = e.target.closest('[data-x]'); if (!b) return;
+    if (b.dataset.x === 'no') return closeModal();
+    if ($('#pw-b').value !== $('#pw-u').value) return toast('Password baru dan ulangannya berbeda.', 'bad');
+    try { await api('changePassword', { lama: $('#pw-l').value, baru: $('#pw-b').value }); closeModal(); toast('Password diganti.'); } catch (x) { toast(x.message, 'bad'); }
+  });
+}
+
+/* ------------------------------ AKSI KLIK ------------------------------ */
+const ACTS = {
+  nav: el => { if (el.dataset.page === 'daftar') S.filter = { bulan: '', jenis: '', bukti: el.dataset.arg || '', q: '' }; if (el.dataset.page === 'catat') S.txType = null; go(el.dataset.page); },
+  openNav: () => APP.classList.add('nav-open'), closeNav: () => APP.classList.remove('nav-open'),
+  userMenu: (el, e) => { if (e.target.closest('#user-menu button')) return; $('#user-menu').classList.toggle('hidden'); },
+  logout: async () => { try { await api('logout'); } catch (e) {} showLogin(); },
+  installApp: async () => {
+    $('#user-menu').classList.add('hidden');
+    if (!pwaDeferred) return toast('Browser ini belum menawarkan instalasi. Di Chrome desktop/Android biasanya ada ikon instal di address bar.', 'warn');
+    pwaDeferred.prompt();
+    const { outcome } = await pwaDeferred.userChoice;
+    pwaDeferred = null;
+    if (outcome !== 'accepted') toast('Instalasi dibatalkan.', 'warn');
+  },
+  gantiPass: () => { $('#user-menu').classList.add('hidden'); gantiPass(false); },
+  closeModal: () => closeModal(),
+  pickType: el => { S.txType = el.dataset.t; go('catat'); },
+  txBack: () => { S.txType = null; go('catat'); },
+  addItem: () => { S.items.push({ produk_id: '', qty: 1, harga: 0, satuan: '' }); renderItems(); recalc(); },
+  delItem: el => { S.items.splice(Number(el.dataset.i), 1); renderItems(); recalc(); },
+  pickCam: () => $('#inp-cam').click(), pickFile: () => $('#inp-file').click(),
+  delFile: el => { S.files.splice(Number(el.dataset.i), 1); renderFiles(); },
+  openTx: el => openTx(el.dataset.id), viewFile: el => viewFile(el.dataset.id), upMore: el => upMore(el.dataset.id),
+  kwitansi: el => setKwitansi(el.dataset.id, el.dataset.t || 30), voidTx: el => voidTx(el.dataset.id),
+  applyFilter: () => { S.filter = { bulan: $('#fl-bulan').value, jenis: $('#fl-jenis').value, bukti: $('#fl-bukti').value, q: $('#fl-q').value.trim() }; go('daftar'); },
+  loadRep: () => loadRep(), exportRep: () => exportRep(),
+  loadTutup: () => { S.tutupBulan = $('#tb-bulan').value || nowMonth(); go('tutup'); },
+  exportTutup: async el => { setBusy(el, true, 'Menyiapkan Excel...'); try { const r = await api('exportReport', { tipe: 'tutupbuku', bulan: S.tutupBulan }); downloadB64(r.b64, r.name); } catch (e) { toast(e.message, 'bad'); } finally { setBusy(el, false); } },
+  tanda: async el => { const note = $(`[data-note="${el.dataset.id}"]`); try { await api('setTanda', { bulan: S.tutupBulan, transaksi_id: el.dataset.id, tanda: el.dataset.v, catatan: note ? note.value : '' }); const y = APP.scrollTop; await go('tutup'); APP.scrollTop = y; } catch (e) { toast(e.message, 'bad'); } },
+  tutupBuku: async () => { if (!await confirmBox('Tutup buku bulan ' + S.tutupBulan + '?', 'Setelah ditutup, bulan ini terkunci: tidak bisa menambah, mengubah, atau void transaksi. Bisa dibuka lagi dengan alasan tertulis.', 'Tutup buku')) return; try { await api('tutupBuku', { bulan: S.tutupBulan }); toast('Bulan ' + S.tutupBulan + ' ditutup dan terkunci.'); go('tutup'); } catch (e) { toast(e.message, 'bad'); } },
+  bukaBuku: async () => { const a = await promptBox('Buka kembali bulan ' + S.tutupBulan, 'Alasan membuka kembali (wajib)', 'Buka kembali'); if (a === null) return; try { await api('bukaBuku', { bulan: S.tutupBulan, alasan: a }); toast('Bulan dibuka kembali.'); go('tutup'); } catch (e) { toast(e.message, 'bad'); } },
+  mtab: el => { S.mtab = el.dataset.t; go('master'); },
+  addMaster: () => masterForm(S.mtab || 'Client', null),
+  editMaster: el => { const key = MTABS.find(t => t[0] === (S.mtab || 'Client'))[2]; masterForm(S.mtab || 'Client', S.master[key].find(r => r.id === el.dataset.id)); },
+  addUser: () => {
+    const bg = modal(`<h3>Tambah pengguna</h3><div style="margin-top:14px">${fld('Nama lengkap', '<input id="nu-n" maxlength="60">')}${fld('Username', '<input id="nu-u" maxlength="30" autocapitalize="none">', 'Huruf kecil, angka, titik, strip (3-30 karakter).')}${fld('Peran', '<select id="nu-p"><option value="DIREKTUR">Direktur (akses keuangan)</option><option value="ADMIN">Admin (tanpa data keuangan)</option></select>')}${fld('Password sementara', '<input id="nu-pw" type="text" autocomplete="off">', 'Minimal 8 karakter, huruf dan angka. Pengguna wajib menggantinya saat login pertama.')}</div><div class="acts"><button class="btn" data-x="no">Batal</button><button class="btn primary" data-x="ok">Buat akun</button></div>`);
+    bg.addEventListener('click', async e => { const b = e.target.closest('[data-x]'); if (!b) return; if (b.dataset.x === 'no') return closeModal(); try { await api('createUser', { nama: $('#nu-n').value, username: $('#nu-u').value, peran: $('#nu-p').value, password: $('#nu-pw').value }); toast('Akun dibuat.'); closeModal(); go('pengguna'); } catch (x) { toast(x.message, 'bad'); } });
+  },
+  resetPw: el => {
+    const bg = modal(`<h3>Reset password</h3>${fld('Password sementara baru', '<input id="rp-pw" type="text" autocomplete="off">', 'Minimal 8 karakter, huruf dan angka.')}<div class="acts"><button class="btn" data-x="no">Batal</button><button class="btn primary" data-x="ok">Reset</button></div>`);
+    bg.addEventListener('click', async e => { const b = e.target.closest('[data-x]'); if (!b) return; if (b.dataset.x === 'no') return closeModal(); try { await api('resetPassword', { id: el.dataset.id, password: $('#rp-pw').value }); toast('Password direset. Pengguna wajib menggantinya saat login.'); closeModal(); go('pengguna'); } catch (x) { toast(x.message, 'bad'); } });
+  },
+  toggleUser: async el => { try { await api('setUserActive', { id: el.dataset.id, aktif: el.dataset.v === '1' }); go('pengguna'); } catch (e) { toast(e.message, 'bad'); } },
+  setTema: async el => { const v = el.dataset.v; autoThemePaused = true; document.documentElement.dataset.tema = v; try { await api('saveSettings', { tema: v }); S.pub.tema = v; try { localStorage.setItem('pbk_pub', JSON.stringify({ tema: S.pub.tema, mode: S.pub.mode })); } catch (x) {} toast('Tema diterapkan.'); go('tampilan'); } catch (e) { toast(e.message, 'bad'); document.documentElement.dataset.tema = S.pub.tema; } },
+  setAutoTema: async el => { const on = el.dataset.v === '1'; try { await api('saveSettings', { tema_otomatis: on }); S.pub.tema_otomatis = on; autoThemePaused = false; syncAutoTheme(); toast(on ? 'Tema otomatis diaktifkan.' : 'Tema otomatis dimatikan.'); go('tampilan'); } catch (e) { toast(e.message, 'bad'); } },
+  setMode: async el => { const v = el.dataset.v; document.documentElement.dataset.mode = v; try { await api('saveSettings', { mode: v }); S.pub.mode = v; toast('Mode ' + v + ' diterapkan.'); go('tampilan'); } catch (e) { toast(e.message, 'bad'); document.documentElement.dataset.mode = S.pub.mode; } },
+  pickLogo: () => { const inp = $('#inp-logo'); inp.onchange = async () => { const f = inp.files[0]; if (!f) return; try { const png = f.type === 'image/png'; const c = await compressImage(f, 512, png ? 'image/png' : 'image/jpeg', 0.9); if (c.b64.length * 0.75 > 1024 * 1024) throw new Error('Logo masih lebih dari 1 MB, gunakan gambar yang lebih kecil.'); await api('uploadLogo', { mime: c.mime, b64: c.b64 }); S.pub.logo = c.dataUrl; applyBrand(); brandLogo($('#lg-prev')); toast('Logo diperbarui.'); } catch (e) { toast(e.message, 'bad'); } }; inp.click(); }
+};
+document.addEventListener('click', e => {
+  if (!e.target.closest('#user-chip')) { const um = $('#user-menu'); if (um) um.classList.add('hidden'); }
+  const el = e.target.closest('[data-act]'); if (!el) return;
+  const f = ACTS[el.dataset.act]; if (f) f(el, e);
+});
+document.addEventListener('focusout', async e => {
+  const t = e.target;
+  if (t.dataset && t.dataset.note !== undefined) { // catatan baris tutup buku
+    const id = t.dataset.note; if (!S.tutupBulan) return;
+    try { await api('setTanda', { bulan: S.tutupBulan, transaksi_id: id, tanda: t.dataset.tanda || 'BELUM', catatan: t.value }); } catch (x) { toast(x.message, 'bad'); }
+  }
+  if (t.dataset && t.dataset.tot !== undefined) {
+    try { await api('setCekTotal', { bulan: S.tutupBulan, kategori: t.dataset.tot, nilai: t.value }); const y = APP.scrollTop; await go('tutup'); APP.scrollTop = y; } catch (x) { toast(x.message, 'bad'); }
+  }
+});
+document.addEventListener('change', e => { if (e.target.id === 'rp-mode') { const t = e.target.value === 'tahun'; $('#w-bulan').classList.toggle('hidden', t); $('#w-tahun').classList.toggle('hidden', !t); } });
+
+/* ------------------------------ MODE PRATINJAU (di luar Google) ------------------------------ */
+function mockRpc(action, p) {
+  const ok = d => Promise.resolve({ ok: true, data: d });
+  const bad = m => Promise.resolve({ ok: false, msg: m });
+  const MP = window.__mock = window.__mock || { pub: { nama_perusahaan: 'PT Berkah Riyad Abadi', tema: 'merah', mode: 'terang', alamat: 'Jl. Tembang No. 36, Kel. Lere', kota: 'Kota Palu, Sulawesi Tengah', telepon: '08218902495', logo: '' } };
+  const peran = () => (S.user && S.user.peran);
+  switch (action) {
+    case 'getPublicSettings': return ok(MP.pub);
+    case 'login': return p.username === 'admin' ? ok({ success: true, token: 'x', peran: 'ADMIN', nama: 'Administrator', wajib_ganti: false }) : ok({ success: true, token: 'x', peran: 'DIREKTUR', nama: 'Bu Direktur Finance', wajib_ganti: false });
+    case 'saveSettings': Object.assign(MP.pub, p); return ok(true);
+    case 'uploadLogo': return ok(true);
+    case 'listUsers': return ok([{ id: 'U1', username: 'admin', nama: 'Administrator', peran: 'ADMIN', aktif: 'YA', wajib_ganti: 'TIDAK' }, { id: 'U2', username: 'direktur', nama: 'Bu Direktur Finance', peran: 'DIREKTUR', aktif: 'YA', wajib_ganti: 'TIDAK' }]);
+    case 'sysInfo': return ok({ versi: '2.0.0', zona_waktu: 'Asia/Makassar', jumlah_pengguna: 2, pengguna_aktif: 2, db_url: '#' });
+    case 'getMasters': return ok({ pengaturan: { ppn_tarif: 12, faktor_p: 11, faktor_q: 12, pph_mode: 'FINAL', pph_tarif: 0.5, termin: 30, tahun: '2026' }, akunKas: [{ id: 'AK1', nama: 'Rekening Perusahaan', jenis: 'Bank', no_rekening: '1234567890', aktif: 'YA' }], client: [{ id: 'C1', nama: 'PT Pembangunan IKN', termin_default: 30 }], supplier: [{ id: 'S1', nama: 'PT Hamparan Perkasa', pkp: 'YA' }, { id: 'S2', nama: 'Toko Pasir Lokal', pkp: 'TIDAK' }], rekSupplier: [{ id: 'R1', supplier_id: 'S1', nama_rekening: 'PT Hamparan Perkasa', bank: 'BNI', no_rekening: '0123456789', aktif: 'YA' }], produk: [{ id: 'P1', nama: 'LPA', satuan: 'm3', harga_standar: 378000, aktif: 'YA' }, { id: 'P2', nama: 'LPC', satuan: 'm3', harga_standar: 372000, aktif: 'YA' }, { id: 'P3', nama: 'Pasir', satuan: 'm3', harga_standar: 0, aktif: 'YA' }], kategori: [{ id: 'K1', nama: 'Sewa', jenis: 'OPERASIONAL', aktif: 'YA' }, { id: 'K4', nama: 'Listrik-Air-Internet', jenis: 'OPERASIONAL', aktif: 'YA' }] });
+    case 'getDashboard': return ok({ kas: 842500000, piutang: 1241730000, hutang: 699000000, talangan: 3250000, invoice_terbuka: 3, arus: [{ bulan: '2026-05', masuk: 120e6, keluar: 80e6 }, { bulan: '2026-06', masuk: 260e6, keluar: 190e6 }, { bulan: '2026-07', masuk: 410e6, keluar: 330e6 }, { bulan: '2026-08', masuk: 380e6, keluar: 295e6 }, { bulan: '2026-09', masuk: 690e6, keluar: 420e6 }, { bulan: '2026-10', masuk: 800e6, keluar: 590e6 }], aging: { belum: 600e6, menunggu: 300e6, d30: 200e6, d60: 100e6, d90: 41.73e6 }, perhatian: [{ tipe: 'telat', teks: '2 invoice lewat jatuh tempo', nilai: 341730000 }, { tipe: 'bukti', teks: '4 transaksi belum lengkap buktinya', nilai: 0 }, { tipe: 'talangan', teks: '2 talangan belum direm bes', nilai: 3250000 }, { tipe: 'tutup', teks: 'Waktunya Cek Tutup Buku bulan ini', nilai: 0 }], terbaru: [{ id: 'T1', nomor_bukti: '001/INV-BRA/X/2026', jenis: 'PENJUALAN', tanggal: '2026-10-05', total: 1258740000, pihak: 'PT Pembangunan IKN', status: 'AKTIF' }, { id: 'T2', nomor_bukti: 'BKK-2026-10-004', jenis: 'BIAYA', tanggal: '2026-10-12', total: 450000, pihak: '', deskripsi: 'Wifi bulan Oktober', status: 'AKTIF' }, { id: 'T3', nomor_bukti: 'BKM-2026-10-002', jenis: 'PEMBAYARAN_MASUK', tanggal: '2026-10-20', total: 500000000, pihak: 'PT Pembangunan IKN', status: 'AKTIF' }], laba_bulan: { omzet: 1134000000, hpp: 900000000, laba_kotor: 234000000, operasional: 18500000, laba: 215500000 }, laba_tahun: { laba: 487250000 }, ppn_bulan: { keluaran: 124740000, masukan: 99000000, selisih: 25740000 }, pph_estimasi_bulan: 5670000, bulan: '2026-10', tahun: '2026', mode_pph: 'FINAL' });
+    case 'listTx': return ok({ total: 3, rows: [{ id: 'T1', nomor_bukti: '001/INV-BRA/X/2026', jenis: 'PENJUALAN', tanggal: '2026-10-05', status: 'AKTIF', pihak: 'PT Pembangunan IKN', kategori: '', deskripsi: '3.000 m3 LPA', total: 1258740000, status_tampil: 'BERJALAN', bukti: 'LENGKAP' }, { id: 'T2', nomor_bukti: 'BKK-2026-10-004', jenis: 'BIAYA', tanggal: '2026-10-12', status: 'AKTIF', pihak: '', kategori: 'Listrik-Air-Internet', deskripsi: 'Wifi bulan Oktober', total: 450000, status_tampil: 'AKTIF', bukti: 'KURANG' }, { id: 'T3', nomor_bukti: 'BKK-2026-10-005', jenis: 'BIAYA', tanggal: '2026-10-14', status: 'AKTIF', pihak: '', kategori: 'Sewa', deskripsi: 'Sewa rumah', total: 3000000, status_tampil: 'BELUM_REMBES', bukti: 'ALASAN' }] });
+    case 'getReport': return ok({ judul: 'Buku Kas', periode: '2026-10', kolom: [{ k: 'tanggal', label: 'Tanggal', tipe: 'tanggal' }, { k: 'nomor', label: 'No. Bukti', tipe: 'teks' }, { k: 'ket', label: 'Keterangan', tipe: 'teks' }, { k: 'masuk', label: 'Uang Masuk', tipe: 'angka', total: true }, { k: 'keluar', label: 'Uang Keluar', tipe: 'angka', total: true }, { k: 'saldo', label: 'Saldo', tipe: 'angka' }], baris: [{ tanggal: '2026-10-01', nomor: '', ket: 'Saldo awal', masuk: 0, keluar: 0, saldo: 100000000 }, { tanggal: '2026-10-20', nomor: 'BKM-2026-10-002', ket: 'Pembayaran 001/INV-BRA/X/2026', masuk: 500000000, keluar: 0, saldo: 600000000 }, { tanggal: '2026-10-12', nomor: 'BKK-2026-10-004', ket: 'Wifi bulan Oktober', masuk: 0, keluar: 450000, saldo: 599550000 }], total: { masuk: 'sum', keluar: 'sum' }, ringkasan: [{ label: 'Saldo awal', nilai: 100000000 }, { label: 'Saldo akhir', nilai: 599550000 }], catatan: '' });
+    case 'tutupBukuData': return ok({ bulan: p.bulan, status: 'TERBUKA', alasan_buka: '', rows: [{ id: 'T2', tanggal: '2026-10-12', nomor_bukti: 'BKK-2026-10-004', jenis: 'BIAYA', deskripsi: 'Wifi', pihak: '', total: 450000, bukti: 'KURANG', tanda: 'BELUM', catatan: '' }, { id: 'T3', tanggal: '2026-10-14', nomor_bukti: 'BKK-2026-10-005', jenis: 'BIAYA', deskripsi: 'Sewa rumah', pihak: '', total: 3000000, bukti: 'LENGKAP', tanda: 'COCOK', catatan: '' }], totals: [{ kategori: 'Sewa', sistem: 3000000, excel: 3000000, selisih: 0 }, { kategori: 'Listrik-Air-Internet', sistem: 450000, excel: null, selisih: null }], kas: { masuk: 500000000, keluar: 3450000, excel_masuk: null, excel_keluar: null, selisih_masuk: null, selisih_keluar: null }, checklist: { tanpa_bukti: 1, selisih_tanpa_catatan: 0, talangan_belum: 1, invoice_telat: 2, belum_diperiksa: 1 } });
+    case 'openItems': return ok([]);
+    case 'logout': return ok(true);
+    default: return ok(true);
+  }
+}
+
+/* ------------------------------ PWA: instal ke PC/HP ------------------------------ */
+let pwaDeferred = null;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  pwaDeferred = e;
+  const b = document.getElementById('btn-install');
+  if (b) b.classList.remove('hidden');
+});
+window.addEventListener('appinstalled', () => {
+  pwaDeferred = null;
+  const b = document.getElementById('btn-install');
+  if (b) b.classList.add('hidden');
+  toast('Aplikasi berhasil diinstal.');
+});
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(() => { /* wajar gagal jika sw.js belum ada di hosting ini (mis. Blogspot) */ });
+  });
+}
+
+boot();
+</script>
+</body>
+</html>
